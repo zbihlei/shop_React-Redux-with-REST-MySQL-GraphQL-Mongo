@@ -1,21 +1,24 @@
-
-import React from 'react'
+import React, { use } from 'react'
 import styles from '../styles/main.module.scss'
 import Link from 'next/link'
-import { useGetGeneralQuery } from '../api/apiSlice'
+import getGeneral from '../actions/getGeneral';
 
-const Main =  ({props}) => {
+
+export default async function Main() {
+  const general = await getGeneral();
 
   return (
-    general.map(gen=>{
-      <div className={styles.wrapp}>
-      <Link key={gen.id} href='/products' className={styles.part}>
-        <span>{gen.type}</span>
-      </Link>
+    <div className={styles.wrapp}>
+      {general.map(gen => (
+        <Link key={gen.id} href='/products' className={styles.part}>
+          <span>{gen.type}</span>
+        </Link>
+      ))}
     </div>
-    })
-  )
+  );
 }
-export default Main
+
+
+
 
 
