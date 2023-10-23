@@ -23,6 +23,14 @@ app.get("/", (req,res)=>{
     })
 });
 
+app.get("/lite", (req,res)=>{
+    const q = "SELECT * FROM shop_db.lite";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
 
 app.use(express.json());
 app.use(cors());

@@ -1,9 +1,13 @@
 import React from 'react'
-import styles from '../styles/productslist.module.scss'
 
-function ProductList() {
+const ProductList = ({specific, title}) => {
+  console.log(specific)
+
   return (
-    <div className={styles.wrapp}>ProductList</div>
+<>
+<div>{title}</div>
+<div>Product list</div>
+</>
   )
 }
 
