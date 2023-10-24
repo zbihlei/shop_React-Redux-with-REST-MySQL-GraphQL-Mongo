@@ -1,7 +1,6 @@
 import { ReduxProvider } from './store/provider';
 import { Space_Mono } from 'next/font/google'
 import './globals.css'
-import LOGO from '../app/images/whiskey.png'
 import Link from 'next/link'
 
 

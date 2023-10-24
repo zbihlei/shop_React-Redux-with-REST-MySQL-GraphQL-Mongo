@@ -1,4 +1,15 @@
 .wrapp{
     min-height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item{
     text-align: center;
+    text-transform: uppercase;
+    img{
+        width: 250px;
+        height: 250px;
+    }
 }
