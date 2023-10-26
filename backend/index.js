@@ -39,6 +39,15 @@ app.get("/beer", (req,res)=>{
     })
 });
 
+app.get("/beer/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.beer WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
 app.use(express.json());
 app.use(cors());
 

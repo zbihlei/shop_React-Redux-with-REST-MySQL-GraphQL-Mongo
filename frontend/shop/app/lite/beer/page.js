@@ -1,5 +1,4 @@
-import React from 'react'
-import ProductList from '../../components/ProductList'
+import ProductList from '../../components/ProductsList'
 import { getSpecific } from '../../actions/getData';
 
 export default async function Beer(){

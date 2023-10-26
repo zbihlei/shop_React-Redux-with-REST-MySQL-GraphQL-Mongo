@@ -1,0 +1,33 @@
+.wrapp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.left{
+    img{
+        width: 500px;
+    }
+}
+
+.right{
+    .name{
+        font-size: 24px;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+    }
+    .description{
+        white-space: pre-line;
+        width: 50%;
+    }
+
+    .descriptionList{
+        display: flex;
+         justify-content: space-between;
+        &__column{
+            flex: 1;
+            padding: 10px; 
+        }
+    }
+}
