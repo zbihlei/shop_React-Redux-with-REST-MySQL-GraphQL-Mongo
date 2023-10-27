@@ -16,7 +16,7 @@ body {
 
 header, footer {
   width: 100%;
-  height: 70px;
+  height: 90px;
   background-color: black;
   color: white;
 }
@@ -24,11 +24,16 @@ header {
 
 }
 .logo{
+  margin: auto;
   width: 100px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../app//images//whiskey.svg');
+  background-image: url('../app//images//logo.svg');
+  transition: background-image 0.8s ease-in, opacity 0.8s ease-out;
+}
+.logo:hover{
+  background-image: url('../app//images//logo_pink.svg');
 }
 footer{
   text-transform: lowercase;

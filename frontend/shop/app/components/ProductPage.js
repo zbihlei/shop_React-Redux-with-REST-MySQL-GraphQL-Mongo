@@ -22,7 +22,7 @@ const ProductPage = ({title, specificProduct}) => {
 
   useEffect(()=>{
     setDescription(rows);
-  },[description])
+  },[prod])
   
   
   return (
@@ -35,16 +35,16 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.description}>
         <>
         {description.map((item, index) => (
-          <div key={index} className={styles.descriptionList}>
-            <div className={styles.description__column}>{item.key}:</div> 
-            <div className={styles.description__column}>{item.value}</div>
-          </div>
+          <ul key={index} className={styles.descriptionList}>
+            <li className={styles.description__column}>{item.key}:</li> 
+            <li className={styles.description__column}>{item.value}</li>
+          </ul>
         ))}
       </>
         </div>
 
         <div className={styles.low}>
-          <div className={styles.price}>{prod.price}</div>
+          <div className={styles.price}>{prod.price}<span> ₴</span></div>
             <div className={styles.quantity}>
               <button>-</button>
               <span>1</span>

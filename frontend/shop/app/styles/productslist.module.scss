@@ -3,13 +3,36 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+   
 }
 
 .item{
     text-align: center;
     text-transform: uppercase;
+    color: black;
+    transition: 3s ease; //keep it for elements  moving apart 
+
     img{
         width: 250px;
         height: 250px;
+    }
+    .name{
+        font-size: 22px;
+        margin-top: 20px;
+        transition: background-color 0.3s ease-in, opacity 0.3s ease-out;
+    }
+    .name:hover{
+            background-color: black;
+            color: rgb(242, 30, 168);
+    }
+    .description{
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    .price{
+        font-size: 22px;
+        span{
+            font-size: 16px;
+        }
     }
 }
