@@ -48,6 +48,58 @@ app.get("/beer/:id", (req,res)=>{
     })
 });
 
+app.get("/energetic", (req,res)=>{
+    const q = "SELECT * FROM shop_db.energetic";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/energetic/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.energetic WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/coctail", (req,res)=>{
+    const q = "SELECT * FROM shop_db.coctail";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/coctail/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.coctail WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/craft", (req,res)=>{
+    const q = "SELECT * FROM shop_db.craft";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/craft/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.craft WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+
 app.use(express.json());
 app.use(cors());
 

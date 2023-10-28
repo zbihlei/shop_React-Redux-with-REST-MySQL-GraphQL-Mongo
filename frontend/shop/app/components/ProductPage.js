@@ -6,29 +6,45 @@ import styles from '../styles/productPage.module.scss'
 const ProductPage = ({title, specificProduct}) => {
 
   const [description, setDescription] = useState([]);
-
+  const [volume, setVolume] = useState([]);
   const prod = specificProduct[0];
 
-  //split the text 2 col
-  const text = prod.description;
-  const regex = /([^:]+):(.+)/g;
-  let match;
-  const rows = [];
-  while ((match = regex.exec(text)) !== null) {
-    const key = match[1].trim();
-    const value = match[2].trim();
-    rows.push({ key, value });
+
+  //volumes to array
+
+  function volumes(){
+    if (prod.volume){
+      let volumesArray = prod.volume.split(' / ');
+      setVolume(volumesArray);  
+    }
   }
 
-  useEffect(()=>{
+  //split the text 2 col
+
+  function splitDescription(){
+    const regex = /([^:]+):(.+)/g;
+    let match;
+    const rows = [];
+    while ((match = regex.exec(prod.description)) !== null) {
+      const key = match[1].trim();
+      const value = match[2].trim();
+      rows.push({ key, value });
+    }
     setDescription(rows);
-  },[prod])
+  }
+
+  useEffect(() => {
+    splitDescription(prod.description);
+    volumes();
+  }, [prod.description, prod.volume]);
   
   
   return (
     <div className={styles.wrapp}>
       <div className={styles.left}>
-        <img src={prod.image} alt="image" />
+        <div className={styles.image}>
+        <img src={prod.image} alt="image" />        
+        </div>
       </div>
       <div className={styles.right}>
         <div className={styles.name}>{prod.name}</div>
@@ -51,9 +67,9 @@ const ProductPage = ({title, specificProduct}) => {
               <button>+</button>
             </div>
             <div className={styles.volume}>
-              <span>0.5L</span>
-              <span>1L</span>
-              <span>2L</span>
+              {volume.map((item)=>(
+                <span>{item}</span>
+              ))}
             </div>
             <div className={styles.buy}>
               <button>Buy</button>
@@ -65,3 +81,4 @@ const ProductPage = ({title, specificProduct}) => {
 }
 
 export default ProductPage
+
