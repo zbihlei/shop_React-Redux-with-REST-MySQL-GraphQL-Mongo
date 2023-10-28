@@ -1,5 +1,5 @@
 import ProductList from '../../components/ProductsList'
-import { getSpecific } from '../../actions/getData';
+import { getSpecific } from '../../services/getData';
 
 export default async function Energetic(){
     const title = 'energetic'

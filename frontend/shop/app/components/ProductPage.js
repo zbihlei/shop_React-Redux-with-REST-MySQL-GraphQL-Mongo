@@ -1,14 +1,15 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/productPage.module.scss'
+import MyLoader from './Loader'
 
 
 const ProductPage = ({title, specificProduct}) => {
 
   const [description, setDescription] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
   const prod = specificProduct[0];
-
 
   //volumes to array
 
@@ -31,6 +32,7 @@ const ProductPage = ({title, specificProduct}) => {
       rows.push({ key, value });
     }
     setDescription(rows);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -50,7 +52,13 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.name}>{prod.name}</div>
         <div className={styles.description}>
         <>
-        {description.map((item, index) => (
+        {loading ?  
+        <ul className={styles.descriptionList}>
+          <li className={styles.description__column}>
+          <MyLoader/>
+          </li>
+        </ul>
+        :  description.map((item, index) => (
           <ul key={index} className={styles.descriptionList}>
             <li className={styles.description__column}>{item.key}:</li> 
             <li className={styles.description__column}>{item.value}</li>

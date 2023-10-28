@@ -1,4 +1,4 @@
-import {getGeneral} from './actions/getData';
+import {getGeneral} from './services/getData';
 import styles from './page.module.css'
 import Main from '../app/components/Main'
 
