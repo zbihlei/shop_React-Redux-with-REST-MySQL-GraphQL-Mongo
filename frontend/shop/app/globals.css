@@ -21,19 +21,45 @@ header, footer {
   color: white;
 }
 header {
+  display: flex;
+  justify-content: space-around;
 
 }
 .logo{
-  margin: auto;
+  background-image: url('../app//images//logo.svg');
   width: 100px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../app//images//logo.svg');
   transition: background-image 0.8s ease-in, opacity 0.8s ease-out;
+}
+
+.user{
+  background-image: url('../app/images//user.svg');
+  width: 100px;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.8s ease-in, opacity 0.8s ease-out;
+}
+
+.basket{
+  background-image: url('../app/images//basket.svg');
+  width: 100px;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.8s ease-in, opacity 0.8s ease-out;
+}
+
+.basket:hover{
+  background-image: url('../app//images//basket_pink.svg');
 }
 .logo:hover{
   background-image: url('../app//images//logo_pink.svg');
+}
+.user:hover{
+  background-image: url('../app//images//user_pink.svg');
 }
 footer{
   text-transform: lowercase;

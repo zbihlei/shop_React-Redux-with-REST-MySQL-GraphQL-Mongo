@@ -19,8 +19,14 @@ export default function RootLayout({ children }) {
 
        <body className={sm.className}>
        <header>
+       <Link href='/user'>
+          <div className="user"></div>
+          </Link>
         <Link href='/'>
-          <div className='logo'/>
+          <div className="logo"></div>
+          </Link>
+          <Link href='/basket'>
+          <div className="basket"></div>
           </Link>
         </header>
           <ReduxProvider>
