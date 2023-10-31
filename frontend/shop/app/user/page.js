@@ -1,8 +1,9 @@
 import React from 'react'
+import Auth from '../components/Auth';
 
-export default function UserPage() {
+export default function AuthPage(){
   return (
-    <div>page user</div>
+    <Auth/>
   )
 }
 
