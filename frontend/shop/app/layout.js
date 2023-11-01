@@ -1,10 +1,8 @@
 import { ReduxProvider } from './store/provider';
 import { Space_Mono } from 'next/font/google'
 import './globals.css'
-import Link from 'next/link'
-
-
-
+import Header from './components/Header';
+import Footer from './components/Footer'
 const sm = Space_Mono({ subsets: ['latin'] , weight:'400' })
 
 export const metadata = {
@@ -18,25 +16,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
        <body className={sm.className}>
-       <header>
-       <Link href='/user'>
-          <div className="user"></div>
-          </Link>
-        <Link href='/'>
-          <div className="logo"></div>
-          </Link>
-          <Link href='/basket'>
-          <div className="basket"></div>
-          </Link>
-        </header>
+     <Header/>
           <ReduxProvider>
               {children}
            </ReduxProvider>
-       <footer> 
-          <span style={{display: 'block'}}>© This is footer copyright</span>
-        </footer>
+      <Footer/>
        </body>
-
     </html>
   )
 }

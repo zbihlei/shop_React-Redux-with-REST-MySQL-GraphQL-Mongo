@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import {setUser} from '../slices/userSlice';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {app} from '../../firebase-config'
+import { useRouter } from 'next/navigation'
 
 const Login = ()=>{
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleLogin =(email, password)=>{
         const auth = getAuth(app);
@@ -17,7 +19,7 @@ const Login = ()=>{
                     id: user.uid,
                     token:user.accessToken,
                 }));
-            })
+            }).then( router.push('/'))
             .catch(() => alert('Invalid user!')) 
 
 

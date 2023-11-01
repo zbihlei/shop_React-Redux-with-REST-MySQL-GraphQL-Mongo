@@ -1,0 +1,49 @@
+.formauth{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    input{
+        border: 3px solid black;
+        padding-left: 20px;
+        width: 300px;
+        height: 50px;
+        margin-bottom: 20px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+        &:focus{
+            outline: none;
+            transition: 0.8s ease;
+            border-color:rgb(242, 30, 168);
+        }
+        
+    }
+    button{
+        margin-top: 20px;
+        cursor: pointer;
+        width: 130px;
+        height: 40px;
+        background-color:black;
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        border: none;
+    }
+    button:hover{
+        transition: 0.8s ease;
+        background-color: white;
+        color: rgb(242, 30, 168);
+        text-decoration: underline;
+        border: 1px solid rgb(231, 231, 231);
+    }
+    button:disabled{
+        background-color: rgb(229, 228, 228);
+        color: gray;
+        &:hover{
+            transition: none;
+            text-decoration: none;
+        }
+    }
+}

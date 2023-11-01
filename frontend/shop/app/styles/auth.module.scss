@@ -1,0 +1,32 @@
+.authpage{
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.authpage_head{
+    margin-bottom: 20px;
+}
+.authpage_link{
+    line-height: 100px;
+    margin-top: 20px;
+    button{
+        cursor: pointer;
+        width: 120px;
+        height: 20px;
+        color: black;
+        font-size: 18px;
+        text-transform: uppercase;
+        border: none;
+        background-color: inherit;
+    }
+    button:hover{
+        transition: 0.8s ease;
+        color: rgb(242, 30, 168);
+        text-decoration: underline;
+    }
+
+}
+   

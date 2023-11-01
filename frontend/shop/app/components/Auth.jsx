@@ -1,11 +1,21 @@
 "use client"
 import { Login } from '../components/LogIn'
 import { SignUp } from '../components/SIgnUp'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from '../styles/auth.module.scss'
+import {useAuth} from '../hooks/useAuth';
+import { useRouter } from 'next/navigation'
+
 
 const Auth = () => {
     const [register, setRegister]= useState(false);
+    const {isAuth} = useAuth();
+    const router = useRouter();
+
+    useEffect(()=> {
+      if (isAuth)  router.push('/user')
+    },[isAuth])
+
 
   return ( 
   <div className={styles.authpage}>
