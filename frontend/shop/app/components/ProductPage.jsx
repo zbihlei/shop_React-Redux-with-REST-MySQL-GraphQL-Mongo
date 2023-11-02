@@ -2,14 +2,19 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/productPage.module.scss'
 import MyLoader from './Loader'
-
+import { useDispatch} from "react-redux";
+import { addToBasket } from '../slices/basketSlice';
+import { usePathname } from 'next/navigation'
 
 const ProductPage = ({title, specificProduct}) => {
 
   const [description, setDescription] = useState([]);
   const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
+  const [quantity, setQuantity] = useState(1);
   const prod = specificProduct[0];
+  const dispatch = useDispatch();
+  const pathname = usePathname();
 
   //volumes to array
 
@@ -70,9 +75,9 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.low}>
           <div className={styles.price}>{prod.price}<span> ₴</span></div>
             <div className={styles.quantity}>
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
+              <button onClick={()=>setQuantity(Math.max(1, quantity - 1))}>-</button>
+              <span>{quantity}</span>
+              <button onClick={()=>setQuantity(Math.max(1, quantity + 1))}>+</button>
             </div>
             <div className={styles.volume}>
               {volume.map((item)=>(
@@ -80,7 +85,16 @@ const ProductPage = ({title, specificProduct}) => {
               ))}
             </div>
             <div className={styles.buy}>
-              <button>Buy</button>
+              <button onClick={()=>dispatch(addToBasket([{
+                 id: prod.id,
+                 type:prod.type,
+                 name: prod.name,
+                 image: prod.image,
+                 description: prod.description,
+                 price: prod.price,
+                 quantity: quantity,
+                 path: pathname
+              }]))}>Buy</button>
             </div>
         </div>
       </div>
