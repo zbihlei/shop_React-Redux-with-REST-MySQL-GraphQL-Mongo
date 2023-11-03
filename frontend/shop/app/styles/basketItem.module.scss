@@ -56,21 +56,22 @@
             font-size: 16px;
         }
     }
-    .delete{
-        cursor: pointer;
-        width: 100px;
-        height: 40px;
-        background-color:black;
-        color: white;
-        font-size: 24px;
-        text-transform: uppercase;
-        border: none;
-    }
-    .delete:hover{
-        transition: 0.8s ease;
-        background-color: white;
-        color: rgb(242, 30, 168);
-        text-decoration: underline;
-        border: 1px solid rgb(231, 231, 231);
-    }
 }
+.delete{
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    background-color:black;
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    border: none;
+}
+.delete:hover{
+    transition: 0.8s ease;
+    background-color: white;
+    color: rgb(242, 30, 168);
+    text-decoration: underline;
+    border: 1px solid rgb(231, 231, 231);
+}
+

@@ -8,14 +8,55 @@ import { usePathname } from 'next/navigation'
 
 const ProductPage = ({title, specificProduct}) => {
 
+  const prod = specificProduct[0];
+
   const [description, setDescription] = useState([]);
   const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const prod = specificProduct[0];
+  const [chosenVol, setChosenVol] = useState();
+  const [isClicked, setIsClicked] = useState(false);
+
   const dispatch = useDispatch();
   const pathname = usePathname();
 
+  useEffect(() => {
+    splitDescription(prod.description);
+    volumes();
+    setChosenVol(volume[0]);
+  }, [prod.description, prod.volume, volume.length]);
+  
+
+  //styles for button onClick
+  
+  const buttonStyles = {
+    backgroundColor: isClicked ? 'rgb(242, 30, 168)' : 'black',
+    transition: 'all 0.5s ease',
+    transform: isClicked ? 'scale(1.2)' : null,
+    color: isClicked ? 'white' : null,
+  };
+
+  // handle click fn
+
+  const handleClick = () => {
+    setIsClicked(true);
+    dispatch(addToBasket([{
+      id: prod.id,
+      type: prod.type,
+      name: prod.name,
+      image: prod.image,
+      description: prod.description,
+      price: prod.price,
+      quantity: quantity,
+      volume: chosenVol,
+      path: pathname
+    }]));
+
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 500);
+  };
+  
   //volumes to array
 
   function volumes(){
@@ -40,12 +81,7 @@ const ProductPage = ({title, specificProduct}) => {
     setLoading(false);
   }
 
-  useEffect(() => {
-    splitDescription(prod.description);
-    volumes();
-  }, [prod.description, prod.volume]);
-  
-  
+
   return (
     <div className={styles.wrapp}>
       <div className={styles.left}>
@@ -58,11 +94,13 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.description}>
         <>
         {loading ?  
-        <ul className={styles.descriptionList}>
-          <li className={styles.description__column}>
-          <MyLoader/>
-          </li>
-        </ul>
+        <div className={styles.loading}>
+          <ul className={styles.descriptionList}>
+            <li className={styles.description__column} >
+            <MyLoader/>
+            </li>
+          </ul>
+        </div>
         :  description.map((item, index) => (
           <ul key={index} className={styles.descriptionList}>
             <li className={styles.description__column}>{item.key}:</li> 
@@ -81,20 +119,17 @@ const ProductPage = ({title, specificProduct}) => {
             </div>
             <div className={styles.volume}>
               {volume.map((item)=>(
-                <span>{item}</span>
+                <span key={item} 
+                      onClick={()=>setChosenVol(item)} 
+                      style ={{backgroundColor : chosenVol === item ? 'black' : 'white', color: chosenVol === item ? 'white' : 'black'}}>{
+                        item}
+                </span>
               ))}
             </div>
             <div className={styles.buy}>
-              <button onClick={()=>dispatch(addToBasket([{
-                 id: prod.id,
-                 type:prod.type,
-                 name: prod.name,
-                 image: prod.image,
-                 description: prod.description,
-                 price: prod.price,
-                 quantity: quantity,
-                 path: pathname
-              }]))}>Buy</button>
+              <button  onClick={()=>handleClick()}
+              style = {buttonStyles}
+              >Buy</button>
             </div>
         </div>
       </div>

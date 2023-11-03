@@ -9,6 +9,7 @@ const initialState = {
   price: null,
   volume: null,
   quantity: null,
+  volume: null,
   path: null,
   basket: []
 };
@@ -17,16 +18,15 @@ const goodsSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    // setGoods(state, action) {
-    //   const { id, type, name, image, description, price, volume } = action.payload;
-    //   state.id = id;
-    //   state.type = type;
-    //   state.name = name;
-    //   state.image = image;
-    //   state.description = description;
-    //   state.price = price;
-    //   state.volume = volume;
-    // },
+    setGoods(state, action) {
+      const { id, type, name, image, price, volume } = action.payload;
+      state.id = id;
+      state.type = type;
+      state.name = name;
+      state.image = image;
+      state.price = price;
+      state.volume = volume;
+    },
     addToBasket(state, action) {
       state.basket = [...state.basket, ...action.payload];
     },

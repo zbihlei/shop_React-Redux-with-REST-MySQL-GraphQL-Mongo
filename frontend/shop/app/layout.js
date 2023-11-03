@@ -16,8 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
        <body className={sm.className}>
-     <Header/>
+
           <ReduxProvider>
+          <Header/>
               {children}
            </ReduxProvider>
       <Footer/>

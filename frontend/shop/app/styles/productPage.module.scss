@@ -7,6 +7,7 @@
     margin: 0 auto;
 }
 
+
 .left{
     .image{
         width: 400px;
@@ -108,11 +109,8 @@
                 border: none;
             }
             button:hover{
-                transition: 0.8s ease;
                 background-color: white;
                 color: rgb(242, 30, 168);
-                text-decoration: underline;
-                border: 1px solid rgb(231, 231, 231);
             }
         }
     }
