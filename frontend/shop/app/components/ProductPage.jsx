@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../styles/productPage.module.scss'
 import MyLoader from './Loader'
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToBasket } from '../slices/basketSlice';
 import { usePathname } from 'next/navigation'
+
 
 const ProductPage = ({title, specificProduct}) => {
 
@@ -16,16 +17,29 @@ const ProductPage = ({title, specificProduct}) => {
   const [quantity, setQuantity] = useState(1);
   const [chosenVol, setChosenVol] = useState();
   const [isClicked, setIsClicked] = useState(false);
-
+  
   const dispatch = useDispatch();
   const pathname = usePathname();
-
+  
   useEffect(() => {
     splitDescription(prod.description);
     volumes();
     setChosenVol(volume[0]);
   }, [prod.description, prod.volume, volume.length]);
   
+
+  //new item add to basket
+
+  const newItem = {
+    id: prod.id,
+    type: prod.type,
+    name: prod.name,
+    image: prod.image,
+    price: prod.price,
+    quantity: quantity,
+    volume: chosenVol,
+    path: pathname
+  }
 
   //styles for button onClick
   
@@ -40,17 +54,7 @@ const ProductPage = ({title, specificProduct}) => {
 
   const handleClick = () => {
     setIsClicked(true);
-    dispatch(addToBasket([{
-      id: prod.id,
-      type: prod.type,
-      name: prod.name,
-      image: prod.image,
-      description: prod.description,
-      price: prod.price,
-      quantity: quantity,
-      volume: chosenVol,
-      path: pathname
-    }]));
+    dispatch(addToBasket(newItem));
 
     setTimeout(() => {
       setIsClicked(false);

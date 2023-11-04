@@ -1,45 +1,13 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import styles from '../styles/basketItem.module.scss'
-import { useDispatch, useSelector } from "react-redux"
-import {deleteFromBasket, setGoods} from '../slices/basketSlice';
+import { useDispatch } from "react-redux"
+import {deleteFromBasket} from '../slices/basketSlice';
 
-const BasketItem = ({id, type, name,image ,price, volume, quantity, path}) => {
+const BasketItem = ({id, type, name, image ,price, volume, quantity, path}) => {
 
     const dispatch = useDispatch();
-//     const basket = useSelector((state) => state.basket.basket);
-
-
-// function updateItemInBasket(basket, newItem) {
-//   const existingItem = basket.find((item) => item.id === newItem.id);
-//   if (existingItem) {
-//     return basket.map((item) =>
-//       item.id === newItem.id ? { ...item, quantity: item.quantity + 1 } : item
-//     );
-//   } else {
-//     return [...basket, { ...newItem, quantity: 1 }];
-//   }
-// }
-
-// const newItem = {
-//   id,
-//   type,
-//   name,
-//   image,
-//   price,
-//   volume,
-//   path,
-// };
-
-// const updated = updateItemInBasket(basket, newItem);
-
-// useEffect(()=>{
-//   updateItemInBasket(basket, newItem);
-//   dispatch(setGoods(updated));
-// },[basket])
-
-
   return (
     <div className={styles.wrapp}>
       <div className={styles.item}>
