@@ -5,8 +5,8 @@ export default async function Lite() {
 
   const title = 'lite'
   const specific = await getSpecific(title);
-  
+
   return (
-   <ProductsList title={title} specific={specific}/>
+   <ProductsList key={specific.map((item) => item.id)} title={title} specific={specific}/>
    )
   }

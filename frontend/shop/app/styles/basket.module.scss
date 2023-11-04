@@ -3,7 +3,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 .empty{
     text-align: center;
 }
+.confirm{
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+    height: 40px;
+    background-color: rgb(242, 30, 168);
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    border: none;
+    text-decoration: none;
+    position: absolute;
+    bottom: 100px;
+}
+.confirm:hover{
+    transition: 0.8s ease;
+    background-color: white;
+    color:  rgb(242, 30, 168);
+}
+    

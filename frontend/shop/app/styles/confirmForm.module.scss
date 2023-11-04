@@ -1,0 +1,52 @@
+
+.wrapp{
+    display: flex;
+    justify-content: flex-end;
+}
+.form{
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    font-size: 18px;
+    text-transform: uppercase;
+
+    h2{
+        text-align: center;
+    }
+    textarea {
+        resize: none;
+        margin-bottom: 40px;
+        height: 100px;
+     }
+    input{
+        width: 400px;
+        height: 40px;
+        border: 3px solid black;
+        outline: none;
+        &:focus{
+            outline: none;
+            transition: 0.8s ease;
+            border-color:rgb(242, 30, 168);
+        }
+    }
+    button{
+        margin: 0 auto;
+        cursor: pointer;
+        width: 100px;
+        height: 40px;
+        background-color:black;
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        border: none;
+    }
+    button:hover{
+        background-color: white;
+        color: rgb(242, 30, 168);
+    }
+}
+
+.error{
+    width: 400px;
+    padding: 0;
+    color: rgb(242, 30, 168);
+}
