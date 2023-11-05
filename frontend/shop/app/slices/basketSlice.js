@@ -23,9 +23,10 @@ const goodsSlice = createSlice({
       state.basket = newBasket;
     },
     
-    deleteFromBasket(state, action) {
-      state.basket = state.basket.filter(item => item.id !== action.payload);
+    deleteFromBasket(state, {payload}) {
+      state.basket = state.basket.filter(item => item.id !== payload.id || item.volume !== payload.volume);
     },
+    
     clearBasket(state) {
       state.basket = initialState.basket;
     }

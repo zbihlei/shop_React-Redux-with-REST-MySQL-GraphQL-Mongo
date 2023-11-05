@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from '../styles/productPage.module.scss'
 import MyLoader from './Loader'
 import { useDispatch } from "react-redux";
@@ -15,18 +15,21 @@ const ProductPage = ({title, specificProduct}) => {
   const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const [chosenVol, setChosenVol] = useState();
+  const [chosenVol, setChosenVol] = useState(volume[0]);
+  const [pricesWithVolumes, setPricesWithVolumes] = useState({});
+  // const [totalPrice, setTotalPrice] = useState(0); 
   const [isClicked, setIsClicked] = useState(false);
   
   const dispatch = useDispatch();
   const pathname = usePathname();
+  const quantityRef = useRef(quantity);
   
   useEffect(() => {
     splitDescription(prod.description);
     volumes();
     setChosenVol(volume[0]);
+    calculateNewPrices(prod.price, volume);
   }, [prod.description, prod.volume, volume.length]);
-  
 
   //new item add to basket
 
@@ -35,7 +38,7 @@ const ProductPage = ({title, specificProduct}) => {
     type: prod.type,
     name: prod.name,
     image: prod.image,
-    price: prod.price,
+    price: chosenVol ? pricesWithVolumes[chosenVol] : prod.price, 
     quantity: quantity,
     volume: chosenVol,
     path: pathname
@@ -61,6 +64,13 @@ const ProductPage = ({title, specificProduct}) => {
     }, 500);
   };
   
+  //handle click volumes
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+    quantityRef.current = newQuantity;
+  };
+
   //volumes to array
 
   function volumes(){
@@ -84,6 +94,31 @@ const ProductPage = ({title, specificProduct}) => {
     setDescription(rows);
     setLoading(false);
   }
+
+    //prices with volumes
+
+  const calculateNewPrices = (price, volumes) => {
+    if (typeof price !== 'number' || !Array.isArray(volumes)) {
+      return;
+    }
+    const newPrices = {};
+    
+    volumes.forEach((volume) => {
+      const volumeValue = parseFloat(volume);
+      if (!isNaN(volumeValue)) {
+        newPrices[volume] = (price * volumeValue) * 2;
+      }
+    });
+    
+    setPricesWithVolumes(newPrices);
+  };
+
+  // const calculateTotalPrice = () => {
+  //   const pricePerUnit = pricesWithVolumes[chosenVol] || 0; 
+  //   const newTotalPrice = pricePerUnit * quantity;
+  //   setTotalPrice(newTotalPrice);
+  // };
+
 
 
   return (
@@ -115,11 +150,15 @@ const ProductPage = ({title, specificProduct}) => {
         </div>
 
         <div className={styles.low}>
-          <div className={styles.price}>{prod.price}<span> ₴</span></div>
+          <div className={styles.price}>
+
+            {chosenVol ? pricesWithVolumes[chosenVol] : prod.price}
+            
+            <span> ₴</span></div>
             <div className={styles.quantity}>
-              <button onClick={()=>setQuantity(Math.max(1, quantity - 1))}>-</button>
+              <button onClick={()=>handleQuantityChange(Math.max(1, quantityRef.current - 1))}>-</button>
               <span>{quantity}</span>
-              <button onClick={()=>setQuantity(Math.max(1, quantity + 1))}>+</button>
+              <button onClick={()=>handleQuantityChange(Math.max(1, quantityRef.current + 1))}>+</button>
             </div>
             <div className={styles.volume}>
               {volume.map((item)=>(
