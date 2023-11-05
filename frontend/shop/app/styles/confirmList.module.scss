@@ -2,3 +2,13 @@
     display: flex;
     flex-direction: column;
 }
+.sum{
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 22px;
+    background-color: rgb(242, 30, 168);
+    padding: 10px 20px;
+}

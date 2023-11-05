@@ -7,10 +7,13 @@ import styles from '../styles/confirmList.module.scss'
 const ConfirmList = () => {
     const basket= useSelector((state)=>state.basket.basket);
 
+    const prices = basket.map((item) =>  item.price);
+    const sum = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
   return (
     <div className={styles.wrapp}>
         {basket.length ? basket.map((item)=> ( <ConfirmListItem key = {item.id} {...item}/>)) : null}
-    
+        <div className={styles.sum}><span>sum:</span> <span>{sum} <span style={{fontSize: '16px'}}>₴</span></span></div>
     </div>
 
   )

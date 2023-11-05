@@ -22,7 +22,7 @@ const BasketItem = ({id, type, name, image ,price, volume, quantity, path}) => {
         </div>
         <div className={styles.price}>{price}<span> ₴</span></div>
         <div className={styles.quantity}>{quantity}<span> pcs</span></div>
-        <div className={styles.quantity}>{volume !== undefined ? volume : 'standard'}</div>
+        <div className={styles.quantity}>{volume !== undefined ? volume + 'L' : 'standard'}</div>
       </div>
       </Link>
         <button className={styles.delete}  onClick={()=>dispatch(deleteFromBasket({id, volume}))}>delete</button>
