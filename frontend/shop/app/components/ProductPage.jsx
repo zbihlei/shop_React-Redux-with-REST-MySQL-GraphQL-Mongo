@@ -10,7 +10,10 @@ import { usePathname } from 'next/navigation'
 const ProductPage = ({title, specificProduct}) => {
 
   const prod = specificProduct[0];
-  const firstVol = prod.volume.split(' / ')[0];
+  let firstVol;
+    if (prod.volume) {
+  firstVol = prod.volume.split(' / ')[0];
+}
 
   const [description, setDescription] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +43,7 @@ const ProductPage = ({title, specificProduct}) => {
     type: prod.type,
     name: prod.name,
     image: prod.image,
-    price: chosenVol ? totalPrice : prod.price, 
+    price: totalPrice,
     quantity: quantity,
     volume: chosenVol,
     path: pathname
@@ -115,16 +118,12 @@ const ProductPage = ({title, specificProduct}) => {
     setPricesWithVolumes(newPrices);
   };
 
-
   const calculateTotalPrice = () => {
-    const pricePerUnit = pricesWithVolumes[chosenVol] || prod.price; 
+    const pricePerUnit = prod.volume ? (pricesWithVolumes[chosenVol] || prod.price) : prod.price;
     const newTotalPrice = pricePerUnit * quantity;
     setTotalPrice(newTotalPrice);
   };
-
-
-
-
+  
   return (
     <div className={styles.wrapp}>
       <div className={styles.left}>
@@ -156,7 +155,7 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.low}>
           <div className={styles.price}>
 
-            {chosenVol ? totalPrice : prod.price}
+            { totalPrice }
             
             <span> ₴</span></div>
             <div className={styles.quantity}>
