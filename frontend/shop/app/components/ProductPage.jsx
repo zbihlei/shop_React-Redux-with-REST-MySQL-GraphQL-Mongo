@@ -10,26 +10,28 @@ import { usePathname } from 'next/navigation'
 const ProductPage = ({title, specificProduct}) => {
 
   const prod = specificProduct[0];
+  const firstVol = prod.volume.split(' / ')[0];
 
   const [description, setDescription] = useState([]);
   const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const [chosenVol, setChosenVol] = useState(volume[0]);
+  const [chosenVol, setChosenVol] = useState(firstVol);
   const [pricesWithVolumes, setPricesWithVolumes] = useState({});
-  // const [totalPrice, setTotalPrice] = useState(0); 
+  const [totalPrice, setTotalPrice] = useState(0); 
   const [isClicked, setIsClicked] = useState(false);
   
   const dispatch = useDispatch();
   const pathname = usePathname();
   const quantityRef = useRef(quantity);
   
+
   useEffect(() => {
     splitDescription(prod.description);
     volumes();
-    setChosenVol(volume[0]);
     calculateNewPrices(prod.price, volume);
-  }, [prod.description, prod.volume, volume.length]);
+    calculateTotalPrice();
+  }, [prod.description, prod.volume, volume.length, quantity, chosenVol, totalPrice]);
 
   //new item add to basket
 
@@ -38,7 +40,7 @@ const ProductPage = ({title, specificProduct}) => {
     type: prod.type,
     name: prod.name,
     image: prod.image,
-    price: chosenVol ? pricesWithVolumes[chosenVol] : prod.price, 
+    price: chosenVol ? totalPrice : prod.price, 
     quantity: quantity,
     volume: chosenVol,
     path: pathname
@@ -64,7 +66,7 @@ const ProductPage = ({title, specificProduct}) => {
     }, 500);
   };
   
-  //handle click volumes
+  //handle click quantity
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
@@ -113,11 +115,13 @@ const ProductPage = ({title, specificProduct}) => {
     setPricesWithVolumes(newPrices);
   };
 
-  // const calculateTotalPrice = () => {
-  //   const pricePerUnit = pricesWithVolumes[chosenVol] || 0; 
-  //   const newTotalPrice = pricePerUnit * quantity;
-  //   setTotalPrice(newTotalPrice);
-  // };
+
+  const calculateTotalPrice = () => {
+    const pricePerUnit = pricesWithVolumes[chosenVol] || prod.price; 
+    const newTotalPrice = pricePerUnit * quantity;
+    setTotalPrice(newTotalPrice);
+  };
+
 
 
 
@@ -152,7 +156,7 @@ const ProductPage = ({title, specificProduct}) => {
         <div className={styles.low}>
           <div className={styles.price}>
 
-            {chosenVol ? pricesWithVolumes[chosenVol] : prod.price}
+            {chosenVol ? totalPrice : prod.price}
             
             <span> ₴</span></div>
             <div className={styles.quantity}>
@@ -164,9 +168,9 @@ const ProductPage = ({title, specificProduct}) => {
               {volume.map((item)=>(
                 <span key={item} 
                       onClick={()=>setChosenVol(item)} 
-                      style ={{backgroundColor : chosenVol === item ? 'black' : 'white', color: chosenVol === item ? 'white' : 'black'}}>{
-                        item}
-                </span>
+                      style ={{backgroundColor : chosenVol === item ? 'black' : 'white', color: chosenVol === item ? 'white' : 'black'}}>
+                        {item}L
+                </span> 
               ))}
             </div>
             <div className={styles.buy}>
