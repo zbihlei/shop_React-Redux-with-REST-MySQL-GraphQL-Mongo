@@ -18,6 +18,9 @@
         height: 100px;
      }
     input{
+        padding-left: 10px;
+        font-size: 18px;
+        text-transform: capitalize;
         width: 400px;
         height: 40px;
         border: 3px solid black;
@@ -27,6 +30,7 @@
             transition: 0.8s ease;
             border-color:rgb(242, 30, 168);
         }
+
     }
     button{
         margin: 0 auto;

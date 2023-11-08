@@ -15,18 +15,20 @@ const Basket = () => {
     <div className={styles.wrapp}>
         {basket.length ? basket.map((item)=> (
           <>
-        <BasketItem key = {item.id} {...item}/>
-
-          {pathname === '/basket' ?   
+        <BasketItem key = {item.id} {...item}/>          
+          {/* {pathname === '/basket' ?   
           <Link className={styles.confirm} href='/confirm'>Confirm</Link>
           :
           null
-          }
+          } */}
 
           </>
         ))
          : 
         <div className={styles.empty}> The basket is empty!</div> }
+
+        {basket.length ? <Link className={styles.confirm} href='/confirm'>Confirm → </Link> : null }
+
     </div>
   )
 } 

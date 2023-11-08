@@ -1,6 +1,8 @@
 import express  from "express";
 import mysql  from "mysql";
 import cors from "cors";
+import bodyParser from "body-parser";
+
 const app = express();
 
 const db =  mysql.createConnection({
@@ -14,6 +16,22 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
   });
+
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+
+//json error catch
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError) {
+      return res.status(400).json({ error: "Invalid JSON" });
+    }
+    next();
+  });
+  
+
 
 app.get("/", (req,res)=>{
     const q = "SELECT * FROM shop_db.general";
@@ -99,9 +117,40 @@ app.get("/craft/:id", (req,res)=>{
     })
 });
 
+app.post("/orders", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    const { client, basket } = req.body;
 
-app.use(express.json());
-app.use(cors());
+    console.log(req.body);
+
+    const { name, email, surname, phone } = client;
+
+    const values = basket.map((item) => [
+      item.name,
+      item.type,
+      item.image,
+      item.price,
+      item.volume,
+      name, 
+      surname, 
+      phone, 
+      email, 
+    ]);
+  
+    const q =
+    "INSERT INTO orders (`name`, `type`, `image`, `price`, `volume`, `firstname`, `surname`, `phone`, `email`) VALUES ?";
+  
+    
+    db.query(q, [values], (err, data) => {
+      if (err) {
+        console.error("SQL error", err);
+        return res.status(500).json({ error: "order create error" });
+      }
+      return res.json({ message: "order created!" });
+    });
+    
+  });
+  
 
 // app.post("/tasks",(req,res)=>{
 //     const q  =  "INSERT INTO tasks (`name`, `title`) VALUES (?)"

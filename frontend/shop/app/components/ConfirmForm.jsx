@@ -4,16 +4,28 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/confirmForm.module.scss'
 import { useSelector } from "react-redux"
-
+import { postData } from '../services/getData'
 
 const ConfirmForm = () => {
 
   const [isClicked, setIsClicked] = useState(false);
   const basket = useSelector((state)=>state.basket.basket);
 
-  const handleClick = () => {
+  const handleSubmit = (client) => {
     setIsClicked(true);
-    // dispatch(addToBasket(newItem));
+      const data = {
+        client,
+        basket
+      }
+      const jsonData = JSON.stringify(data);
+      postData("http://localhost:8800/orders", jsonData)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(error => {
+          console.log(error)
+        });
+
 
     setTimeout(() => {
       setIsClicked(false);
@@ -80,13 +92,13 @@ const ConfirmForm = () => {
               label="phone"
               id="phone"
               name="phone"
-              type="phone"
+              type="tel"
               />          
           <ErrorMessage className={styles.error} name='phone' component="div"/>   
   
           <label htmlFor="text">email</label>
              <Field
-              style={{marginBottom: '20px'}}
+              style={{marginBottom: '20px', textTransform: 'none'}}
               label="email"
               id="email"
               name="email"
@@ -94,7 +106,7 @@ const ConfirmForm = () => {
              />    
           <ErrorMessage  className={styles.error} name='email' component="div"/> 
         
-              <button onClick={()=>handleClick()} style = {buttonStyles} type="submit">order</button>
+              <button style = {buttonStyles} type="submit">order</button>
           </Form>
            </div>
       </Formik>

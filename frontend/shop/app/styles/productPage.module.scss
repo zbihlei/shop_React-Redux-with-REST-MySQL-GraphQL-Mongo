@@ -54,13 +54,16 @@
         align-items: center;
         margin-top: 20px;
         width: 100%;
+        position: relative;
         .price{
+            position: absolute;
             font-size: 28px;
             span{
                 font-size: 16px;
             }
         }
         .quantity{
+            margin-left: 100px;
             font-size: 22px;
             button{
                 cursor: pointer;
