@@ -151,6 +151,15 @@ app.post("/orders", (req, res) => {
     
   });
   
+  app.get("/orders", (req,res)=>{
+    const {mail} = req.query;
+    const q = `SELECT * FROM orders WHERE email = '${mail}'`;
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
 
 // app.post("/tasks",(req,res)=>{
 //     const q  =  "INSERT INTO tasks (`name`, `title`) VALUES (?)"

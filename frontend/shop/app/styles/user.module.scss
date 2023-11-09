@@ -1,0 +1,44 @@
+.wrapp{
+    min-height: 100%;
+
+    .top{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 30px;
+        font-size: 24px;
+        button{
+            cursor: pointer;
+            width: 130px;
+            height: 40px;
+            background-color:black;
+            color: white;
+            font-size: 24px;
+            text-transform: uppercase;
+            border: none;
+        }
+        button:hover{
+            transition: 0.8s ease;
+            background-color: white;
+            color: rgb(242, 30, 168);
+            text-decoration: underline;
+            border: 1px solid rgb(231, 231, 231);
+        }
+    }
+    h6{
+        text-align: center;
+        font-size: 26px;
+        margin-top: 20px;
+    }
+    .item{
+        margin: 40px;
+        font-size: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        img{
+            width: 50px;
+        }
+    }
+}

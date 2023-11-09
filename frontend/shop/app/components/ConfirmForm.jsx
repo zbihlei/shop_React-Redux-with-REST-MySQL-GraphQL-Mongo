@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/confirmForm.module.scss'
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { postData } from '../services/getData'
 import { clearBasket } from '../slices/basketSlice';
 import { useRouter } from 'next/navigation'
+import { useAuth } from '../hooks/useAuth';
 
 
 const ConfirmForm = () => {
@@ -15,6 +16,7 @@ const ConfirmForm = () => {
   const basket = useSelector((state)=>state.basket.basket);
   const dispatch = useDispatch();
   const router = useRouter();
+  const {isAuth, email} = useAuth();
 
   const handleSubmit = (client) => {
     setIsClicked(true);
@@ -57,7 +59,7 @@ const ConfirmForm = () => {
       <Formik
       initialValues = {{
           name: '',
-          email: '',
+          email: isAuth ? email : '',
           surname: '',
           phone: ''
       }}

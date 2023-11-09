@@ -45,3 +45,13 @@ export  async function getGeneral() {
     throw error; 
   }
 }
+
+export  async function getOrdersByEmail(mail) {
+  try {
+    const res = await fetch(`http://localhost:8800/orders?mail=${mail}`);
+      return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
