@@ -36,7 +36,7 @@ export  async function getGeneral() {
       headers: {
         "Content-Type" : "application/json"
       },
-      body: JSON.stringify(data), 
+      body: data, 
     });
  
     return response.json(); 

@@ -12,9 +12,17 @@ const ConfirmList = () => {
 
   return (
     <div className={styles.wrapp}>
-        {basket.length ? basket.map((item)=> ( <ConfirmListItem key = {item.id} {...item}/>)) : null}
-        <div className={styles.sum}><span>sum:</span> <span>{sum} <span style={{fontSize: '16px'}}>₴</span></span></div>
+  {basket.length ? (
+    basket.map((item) => (
+      <ConfirmListItem key={item.id} {...item} />
+    ))
+  ) : null}
+  {basket.length > 0 && (
+    <div className={styles.sum}>
+      <span>Sum:</span> <span>{sum} <span style={{ fontSize: '16px' }}>₴</span></span>
     </div>
+  )}
+</div>
 
   )
 }

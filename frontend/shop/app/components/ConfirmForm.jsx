@@ -3,13 +3,18 @@ import React, { useState } from 'react'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/confirmForm.module.scss'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { postData } from '../services/getData'
+import { clearBasket } from '../slices/basketSlice';
+import { useRouter } from 'next/navigation'
+
 
 const ConfirmForm = () => {
 
   const [isClicked, setIsClicked] = useState(false);
   const basket = useSelector((state)=>state.basket.basket);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = (client) => {
     setIsClicked(true);
@@ -18,10 +23,16 @@ const ConfirmForm = () => {
         basket
       }
       const jsonData = JSON.stringify(data);
+
+        
       postData("http://localhost:8800/orders", jsonData)
         .then(res => {
           console.log(res);
-        })
+        }).then(
+          dispatch(clearBasket())
+        ).then(
+          router.push('/buyed', { scroll: false })
+        )
         .catch(error => {
           console.log(error)
         });
