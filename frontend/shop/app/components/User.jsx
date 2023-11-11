@@ -13,7 +13,7 @@ const User = () => {
     const {email, isAuth} = useAuth();
     const dispatch = useDispatch();
     const router = useRouter();
-    
+
 
     if(!isAuth) router.push('/auth');
 
@@ -31,9 +31,13 @@ const User = () => {
         <div className={styles.ordersWrapp}>
        {orders.length ? 
        <>
-         {orders.map((item)=>(
+         {orders.map((item, index)=>(
           <Link className={styles.link} href={`http://localhost:3000${item.path}`}>
-   
+                {index === 0 || item.date !== orders[index - 1].date ? (
+                  <div className={styles.time}>
+                    <span>{item.date}</span>
+                  </div>
+                ) : null}
             <div key={item.id} className={styles.item}>
               <div className={styles.name}>{item.name}</div>
               <div className={styles.type}>{item.type}</div>

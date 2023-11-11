@@ -9,7 +9,6 @@ import { clearBasket } from '../slices/basketSlice';
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../hooks/useAuth';
 
-
 const ConfirmForm = () => {
 
   const [isClicked, setIsClicked] = useState(false);
@@ -19,11 +18,12 @@ const ConfirmForm = () => {
   const {isAuth, email} = useAuth();
 
 
+
   const handleSubmit = (client) => {
     setIsClicked(true);
       const data = {
         client,
-        basket
+        basket,
       }
       const jsonData = JSON.stringify(data);
 

@@ -135,10 +135,11 @@ app.post("/orders", (req, res) => {
       surname, 
       phone, 
       email, 
+      new Date().toISOString().slice(0, 19).replace("T", " "),
     ]);
   
     const q =
-    "INSERT INTO orders (`name`, `type`, `image`, `price`, `volume`, `path`, `firstname`, `surname`, `phone`, `email`) VALUES ?";
+    "INSERT INTO orders (`name`, `type`, `image`, `price`, `volume`, `path`, `firstname`, `surname`, `phone`, `email`, `date`) VALUES ?";
   
     
     db.query(q, [values], (err, data) => {
