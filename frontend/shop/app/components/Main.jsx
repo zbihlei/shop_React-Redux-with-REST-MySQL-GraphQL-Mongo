@@ -16,7 +16,7 @@ export default function Main({general}) {
       <div className={styles.name}>Hello <Link href='/user' className={styles.link}>{email}</Link> </div>
       </>: null}
       {general.map(gen => (
-        <Link key={gen.id}  href={gen.type} className={styles.part}>
+        <Link importance="high" rel="preload"   key={gen.id}  href={gen.type} className={styles.part}>
           <span>{gen.type}</span>
         </Link>
       ))}

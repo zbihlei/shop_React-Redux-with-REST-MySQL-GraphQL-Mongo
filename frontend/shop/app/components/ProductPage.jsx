@@ -28,7 +28,6 @@ const ProductPage = ({title, specificProduct}) => {
   const pathname = usePathname();
   const quantityRef = useRef(quantity);
   
-
   useEffect(() => {
     splitDescription(prod.description);
     volumes();

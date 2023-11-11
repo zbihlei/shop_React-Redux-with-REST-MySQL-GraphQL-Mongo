@@ -12,7 +12,7 @@ const ProductList = ({specific, title}) => {
     <>
     {item.type ?  
     
-    <Link href={`http://localhost:3000/${item.type}/${title}/${item.id}`} key={item.id} style={{textDecoration: 'none'}}>
+    <Link importance="high" rel="preload"  href={`http://localhost:3000/${item.type}/${title}/${item.id}`} key={item.id} style={{textDecoration: 'none'}}>
     <div className={styles.item} >
       <div className={styles.image}>
         <img src={item.image} alt="image" />
@@ -26,7 +26,7 @@ const ProductList = ({specific, title}) => {
     </Link>
   
    :   
-    <Link  href={`http://localhost:3000/${title}/${item.name}`} key={item.id} style={{textDecoration: 'none'}}>
+    <Link importance="high" rel="preload"   href={`http://localhost:3000/${title}/${item.name}`} key={item.id} style={{textDecoration: 'none'}}>
     <div className={styles.item} >
     <div className={styles.image}>
         <img src={item.image} alt="image" />

@@ -6,6 +6,7 @@ import {removeUser} from '../slices/userSlice';
 import { useRouter } from 'next/navigation'
 import { getOrdersByEmail } from '../services/getData';
 import { useState,  useEffect } from 'react';
+import Link from 'next/link';
 
 const User = () => {
     const [orders, setOrders] = useState([]);
@@ -13,13 +14,13 @@ const User = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     
+
     if(!isAuth) router.push('/auth');
 
     useEffect(()=>{
       getOrdersByEmail(email).then(res => setOrders(res));
     },[email]);
 
-console.log(orders)
   return (
     <div className={styles.wrapp}>
       <div className={styles.top}>
@@ -28,15 +29,26 @@ console.log(orders)
       </div>
         <h6>Orders history</h6>
         <div className={styles.ordersWrapp}>
-        {orders.map((item)=>(
-          <div key={item.id} className={styles.item}>
-            <div className={styles.name}>{item.name}</div>
-            <div className={styles.type}>{item.type}</div>
-            <img src={item.image} alt="image"/>
-            {item.volume ? <div className={styles.volume}>{item.volume}{item.volume}</div> : null}
-            <div className={styles.price}>{item.price}</div>
-          </div>
+       {orders.length ? 
+       <>
+         {orders.map((item)=>(
+          <Link className={styles.link} href={`http://localhost:3000${item.path}`}>
+   
+            <div key={item.id} className={styles.item}>
+              <div className={styles.name}>{item.name}</div>
+              <div className={styles.type}>{item.type}</div>
+              <div className={styles.image}>            
+                <img src={item.image} alt="image"/>
+              </div>
+              {item.volume ? <div className={styles.volume}>{item.volume}L</div> : <div className={styles.volume}>STANDART</div>}
+              <div className={styles.price}>{item.price} <span style={{fontSize: '14px'}}>₴</span> </div>
+            </div>
+
+          </Link>
         ))}
+        </> : 
+        <div className={styles.text}>No orders yet...</div>
+      }
         </div>
     </div>
   )

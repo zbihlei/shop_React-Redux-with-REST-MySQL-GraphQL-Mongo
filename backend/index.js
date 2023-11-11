@@ -32,7 +32,6 @@ app.use((err, req, res, next) => {
   });
   
 
-
 app.get("/", (req,res)=>{
     const q = "SELECT * FROM shop_db.general";
     db.query(q,(err,data)=>{
@@ -131,6 +130,7 @@ app.post("/orders", (req, res) => {
       item.image,
       item.price,
       item.volume,
+      item.path,
       name, 
       surname, 
       phone, 
@@ -138,7 +138,7 @@ app.post("/orders", (req, res) => {
     ]);
   
     const q =
-    "INSERT INTO orders (`name`, `type`, `image`, `price`, `volume`, `firstname`, `surname`, `phone`, `email`) VALUES ?";
+    "INSERT INTO orders (`name`, `type`, `image`, `price`, `volume`, `path`, `firstname`, `surname`, `phone`, `email`) VALUES ?";
   
     
     db.query(q, [values], (err, data) => {
