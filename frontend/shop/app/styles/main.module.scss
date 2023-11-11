@@ -2,47 +2,96 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     min-height: 100%;
     position: relative;
+    background-image: url('../images//bar.png');
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 -800px;
 }
-.name{
-    position: absolute;
-    top: 10px;
-    font-size: 24px;
-}
+
 .link{
     color:black;
     text-decoration: none;
-    &:hover{
-        transition: 0.8s ease;
-        color: rgb(242, 30, 168);
-        text-decoration: underline;
-    }
+    color: rgb(242, 30, 168);
 }
-.part{
+
+.name{
+    color: rgb(242, 30, 168);
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    background-color: black;
+    width: 100%;
+    text-align: center;
+    top: -10px;
+    z-index: 999;
+}
+
+
+.part {
     text-transform: uppercase;
     text-decoration: none;
+    text-align: center;
     color: black;
-    padding: 100px;
     display: flex;
     flex: 1;
     justify-content: center;
+    align-items: center;
     font-size: 50px;
-    transition: 3s ease; //keep it for elements  moving apart 
-    :hover{
-        transition: background-color 0.7s ease-in, opacity 0.4s ease-out;
-        background-color: black;
-        color: rgb(242, 30, 168);
-        transform: scale(1.1);
-        transition: transform 0.3s;
-    }
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.7s ease-in-out;
+
+
     span{
         cursor: pointer;
-        :hover{
-            transform: scale(1.1);
-            transition: transform 0.3s;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        transition: transform 0.7s ease-in-out;
+        &:hover{
+              transform: scale(1.1);
         }
     }
 
-}
+  }
+  
+  .part::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1; 
+    filter: grayscale(100%); 
+    background-size: cover;
+    transition: opacity 1.5s ease-in-out, filter 2s ease-in-out;
+  }
+  
+  .part.background1::before {
+    background-image: url('../images/lite.jpeg');
+    background-position: 0 -170px;
+  }
+  
+  .part.background2::before {
+    background-image: url('../images/strong.jpeg');
+    background-position: 0 -100px;
+  }
+  
+  .part:hover::before {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+  
+  .part:hover {
+    color: rgb(242, 30, 168);
+    transition: transform 0.7s ease-in-out;
+  }
+
+

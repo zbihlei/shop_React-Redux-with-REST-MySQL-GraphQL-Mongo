@@ -23,7 +23,6 @@ header, footer {
 header {
   display: flex;
   justify-content: space-around;
-
 }
 .logo{
   background-image: url('../app//images//logo.svg');

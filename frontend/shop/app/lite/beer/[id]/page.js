@@ -11,4 +11,3 @@ const specificProduct = await getSpecificItem(title, params.id);
     <ProductPage title={title} specificProduct={specificProduct} />
   )
 }
-

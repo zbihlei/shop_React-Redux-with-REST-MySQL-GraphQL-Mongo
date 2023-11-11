@@ -32,13 +32,13 @@ const User = () => {
        {orders.length ? 
        <>
          {orders.map((item, index)=>(
-          <Link className={styles.link} href={`http://localhost:3000${item.path}`}>
+          <Link key={item.id}  className={styles.link} href={`http://localhost:3000${item.path}`}>
                 {index === 0 || item.date !== orders[index - 1].date ? (
                   <div className={styles.time}>
                     <span>{item.date}</span>
                   </div>
                 ) : null}
-            <div key={item.id} className={styles.item}>
+            <div className={styles.item}>
               <div className={styles.name}>{item.name}</div>
               <div className={styles.type}>{item.type}</div>
               <div className={styles.image}>            
