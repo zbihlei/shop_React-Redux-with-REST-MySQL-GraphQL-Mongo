@@ -3,8 +3,26 @@ import React from 'react'
 import styles from '../styles/main.module.scss'
 import Link from 'next/link'
 import {useAuth} from '../hooks/useAuth'
+import { useEffect, useState } from 'react'
+import Modal from '../components/Modal'
 
 export default function Main({general}) {
+
+  const [modalVisible, setModalVisible] = useState(true);
+
+  useEffect(() => {
+    const isModalShown = localStorage.getItem('isModalShown');
+    if (isModalShown) {
+      setModalVisible(false);
+    } else {
+      setModalVisible(true);
+    }
+  }, []);
+
+  function hideModal(){
+    setModalVisible(false);
+    localStorage.setItem('isModalShown', 'true');
+  }
 
 const {isAuth, email} = useAuth();
 
@@ -14,6 +32,8 @@ const {isAuth, email} = useAuth();
       <>
       <div className={styles.name}>Hello <Link href='/user' className={styles.link}>{email}</Link> </div>
       </>: null}
+
+      {modalVisible && <Modal hide={hideModal} />}
 
       {general.map(gen => (
         <Link 
