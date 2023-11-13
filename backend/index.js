@@ -116,6 +116,48 @@ app.get("/craft/:id", (req,res)=>{
     })
 });
 
+app.get("/strong", (req,res)=>{
+    const q = "SELECT * FROM shop_db.strong";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/wine", (req,res)=>{
+    const q = "SELECT * FROM shop_db.wine";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/wine/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.wine WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/whiskey", (req,res)=>{
+    const q = "SELECT * FROM shop_db.whiskey";
+    db.query(q,(err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
+app.get("/whiskey/:id", (req,res)=>{
+    const prodId = req.params.id;
+    const q = "SELECT * FROM shop_db.whiskey WHERE id = ?";
+    db.query(q, [prodId], (err,data)=>{
+        if(err) return  res.json(err);
+        return res.json(data);
+    })
+});
+
 app.post("/orders", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     const { client, basket } = req.body;
