@@ -3,7 +3,32 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-   
+    background-size: cover;
+
+}
+.barCount{
+    background-image: url('../images//barcount.jpeg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.beer{
+    background-image: url('../images//beer.jpeg');
+}
+.energetic{
+    background-image: url('../images//energetic.jpeg');
+}
+.coctail{
+    background-image: url('../images//coctail.jpeg');
+}
+.craft{
+    background-image: url('../images//craft.jpeg');
+}
+.wine{
+    background-image: url('../images//wine.jpeg');
+}
+.whiskey{
+    background-image: url('../images//whiskey.jpeg');
 }
 
 .item{
@@ -11,7 +36,6 @@
     text-transform: uppercase;
     color: black;
     transition: 3s ease; //keep it for elements  moving apart 
-
 
     .image{
         margin: 0 auto;

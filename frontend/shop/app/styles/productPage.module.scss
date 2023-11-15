@@ -2,9 +2,28 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 80%;
+    width:100%;
     min-height: 100%;
-    margin: 0 auto;
+    padding: 0 70px;
+}
+
+.beer{
+    background-image: url('../images//beer.jpeg');
+}
+.energetic{
+    background-image: url('../images//energetic.jpeg');
+}
+.coctail{
+    background-image: url('../images//coctail.jpeg');
+}
+.craft{
+    background-image: url('../images//craft.jpeg');
+}
+.wine{
+    background-image: url('../images//wine.jpeg');
+}
+.whiskey{
+    background-image: url('../images//whiskey.jpeg');
 }
 
 

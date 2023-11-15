@@ -9,6 +9,13 @@ import { usePathname } from 'next/navigation'
 
 const ProductPage = ({title, specificProduct}) => {
 
+  const beer = title  === 'beer';
+  const energetic = title  === 'energetic';
+  const coctail = title  === 'coctail';
+  const craft = title  === 'craft';
+  const wine = title  === 'wine';
+  const whiskey = title  === 'whiskey';
+
   const prod = specificProduct[0];
   let firstVol;
     if (prod.volume) {
@@ -124,7 +131,14 @@ const ProductPage = ({title, specificProduct}) => {
   };
   
   return (
-    <div className={styles.wrapp}>
+    <div className={`${styles.wrapp} 
+    ${beer ? styles.beer : ''}
+    ${energetic ? styles.energetic : ''}
+    ${coctail ? styles.coctail : ''}
+    ${craft ? styles.craft : ''}
+    ${wine ? styles.wine : ''}
+    ${whiskey ? styles.whiskey : ''}`}>
+
       <div className={styles.left}>
         <div className={styles.image}>
         <img src={prod.image} alt="image" />        
