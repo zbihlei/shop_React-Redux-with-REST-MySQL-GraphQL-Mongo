@@ -5,8 +5,6 @@ import Link from 'next/link'
 
 const ProductList = ({specific, title}) => {
 
-  console.log(title);
-
   const barCount = specific && specific.some(item => item.type);
   const beer = title  === 'beer';
   const energetic = title  === 'energetic';
