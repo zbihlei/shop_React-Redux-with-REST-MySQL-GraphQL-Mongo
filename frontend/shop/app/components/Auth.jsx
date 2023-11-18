@@ -9,14 +9,13 @@ import { useRouter } from 'next/navigation'
 
 const Auth = () => {
     const [register, setRegister]= useState(false);
-    const {isAuth} = useAuth();
+    const {isAuth, email} = useAuth();
     const router = useRouter();
 
-    useEffect(()=> {
-      if (isAuth)  router.push('/user')
-    },[isAuth])
-
-
+    useEffect(() => {
+      if (isAuth) router.push('/user');        
+  }, [isAuth, email]);
+  
   return ( 
   <div className={styles.authpage}>
     { register ? <h3 className={styles.authpage_head}>Register</h3> : <h3 className={styles.authpage_head}>Log in</h3> }

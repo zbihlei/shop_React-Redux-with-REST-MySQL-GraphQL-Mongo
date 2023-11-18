@@ -3,9 +3,11 @@ import React from 'react'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
+
 const Header = () => {
   const basket= useSelector((state)=>state.basket.basket);
- 
+
+
   return (
     <header>
     <Link href='/auth'>

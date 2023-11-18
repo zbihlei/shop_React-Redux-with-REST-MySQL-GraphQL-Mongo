@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 
-router.get("/craft", (req,res)=>{
+router.get("/", (req,res)=>{
     const { db } = req;
     const q = "SELECT * FROM shop_db.craft";
     db.query(q,(err,data)=>{
@@ -11,7 +11,7 @@ router.get("/craft", (req,res)=>{
     })
 });
 
-router.get("/craft/:id", (req,res)=>{
+router.get("/:id", (req,res)=>{
     const { db } = req;
     const prodId = req.params.id;
     const q = "SELECT * FROM shop_db.craft WHERE id = ?";

@@ -35,6 +35,9 @@
     }
 
     .time{
+        display: flex;
+        width: 30%;
+        justify-content: flex-start;
         color: black;
         margin-left: 50px;
         border-bottom: 3px solid #000;
@@ -44,10 +47,44 @@
             border-bottom:  3px solid  rgb(242, 30, 168);
         }
     }
+    .adminWrapp{
+        color: black;
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        span{
+            margin-right: 20px;
+        }
+    }
+    .buttonsAdmin{
+        display: flex;
+        flex-direction: row;
+        margin-left: 50px;
+        button{
+            cursor: pointer;
+            width: 150px;
+            height: 40px;
+            background-color:black;
+            color: white;
+            font-size: 24px;
+            text-transform: uppercase;
+            border: none;
+            transition: background-color 0.7s, color 0.7s;
+        }
+        button:hover{
+            background-color: white;
+            color: rgb(242, 30, 168);
+        }
+        button:last-child{
+            margin-left: 20px;
+        }
+    }
     .item{
+        border: 1px solid rgb(195, 195, 195);
         font-size: 18px;
         color: black;
-        margin: 30px 50px;
+        margin: 50px;
         display: grid;
         align-items: center;
         text-align: center;

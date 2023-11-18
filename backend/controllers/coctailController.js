@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/coctail", (req,res)=>{
+router.get("/", (req,res)=>{
     const { db } = req;
     const q = "SELECT * FROM shop_db.coctail";
     db.query(q,(err,data)=>{
@@ -10,7 +10,7 @@ router.get("/coctail", (req,res)=>{
     })
 });
 
-router.get("/coctail/:id", (req,res)=>{
+router.get("/:id", (req,res)=>{
     const { db } = req;
     const prodId = req.params.id;
     const q = "SELECT * FROM shop_db.coctail WHERE id = ?";

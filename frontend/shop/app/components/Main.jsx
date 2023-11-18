@@ -17,6 +17,7 @@ export default function Main({general}) {
     } else {
       setModalVisible(true);
     }
+
   }, []);
 
   function hideModal(){

@@ -4,7 +4,7 @@ import styles from '../styles/user.module.scss'
 import { useDispatch } from "react-redux";
 import {removeUser} from '../slices/userSlice';
 import { useRouter } from 'next/navigation'
-import { getOrdersByEmail } from '../services/getData';
+import { getOrdersByEmail, getAllOrders } from '../services/getData';
 import { useState,  useEffect } from 'react';
 import Link from 'next/link';
 
@@ -18,7 +18,11 @@ const User = () => {
     if(!isAuth) router.push('/auth');
 
     useEffect(()=>{
-      getOrdersByEmail(email).then(res => setOrders(res));
+      if(email === 'admin@mail.com'){
+        getAllOrders().then(res => setOrders(res));
+      }else{
+        getOrdersByEmail(email).then(res => setOrders(res));
+      }
     },[email]);
 
   return (
@@ -32,12 +36,30 @@ const User = () => {
        {orders.length ? 
        <>
          {orders.map((item, index)=>(
+
           <Link key={item.id}  className={styles.link} href={`http://localhost:3000${item.path}`}>
-                {index === 0 || item.date !== orders[index - 1].date ? (
-                  <div className={styles.time}>
+
+            {index === 0 || item.date !== orders[index - 1].date ? (
+                <div className={styles.time}>
                     <span>{item.date}</span>
-                  </div>
-                ) : null}
+                </div>
+            ) : null}
+
+            {email === 'admin@mail.com' && (index === 0 || (item.date !== orders[index - 1].date && email === 'admin@mail.com')) ? (
+               <>
+               <div className={styles.adminWrapp}>
+                    <span>{item.firstname}</span>
+                    <span>{item.surname}</span>
+                    <span>{item.phone}</span>
+                    <span>{item.email}</span>
+                </div>
+              <div className={styles.buttonsAdmin}>
+                <button className={styles.adminBtn}>processed</button>
+                <button className={styles.adminBtn}>cancelled</button>
+              </div>
+              </>
+            ) : null}
+
             <div className={styles.item}>
               <div className={styles.name}>{item.name}</div>
               <div className={styles.type}>{item.type}</div>

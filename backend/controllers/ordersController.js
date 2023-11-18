@@ -46,4 +46,13 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/all", (req, res) => {
+    const { db } = req;
+    const q = "SELECT * FROM orders";
+    db.query(q, (err, data) => {
+        if (err) return res.json(err);
+        return res.json(data);
+    });
+});
+
 export default router;

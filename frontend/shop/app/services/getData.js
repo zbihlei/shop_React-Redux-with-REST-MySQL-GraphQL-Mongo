@@ -54,4 +54,11 @@ export  async function getOrdersByEmail(mail) {
     console.log(error);
   }
 }
-
+export  async function getAllOrders() {
+  try {
+    const res = await fetch("http://localhost:8800/orders/all");
+      return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}

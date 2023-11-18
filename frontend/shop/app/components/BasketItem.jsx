@@ -11,7 +11,7 @@ const BasketItem = ({id, type, name, image ,price, volume, quantity, path}) => {
 
   return (
     <div className={styles.wrapp}>
-      <div className={styles.item}>
+      <div  className={styles.item}>
       <Link href={`http://localhost:3000/${path}`} key={id} style={{textDecoration: 'none'}}>
       <div className={styles.item} >
         <div className={styles.image}>

@@ -36,6 +36,7 @@ const ProductPage = ({title, specificProduct}) => {
   const quantityRef = useRef(quantity);
   
   useEffect(() => {
+    console.log(prod)
     splitDescription(prod.description);
     volumes();
     calculateNewPrices(prod.price, volume);
