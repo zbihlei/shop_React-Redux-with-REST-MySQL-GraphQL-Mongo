@@ -55,4 +55,33 @@ router.get("/all", (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+    try {
+      const { id } = req.params; 
+      const { status } = req.body;
+      const { db } = req;
+  
+      const updateQuery = 'UPDATE orders SET status = ? WHERE id = ?';
+  
+      db.query(updateQuery, [status, id], (err, result) => {
+        if (err) {
+          console.error('SQL error:', err);
+          return res.status(500).json({ success: false, error: 'Server Error' });
+        }
+  
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ success: false, error: 'Order not found' });
+        }
+  
+        res.json({ success: true, data: { id, status } });
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ success: false, error: error.message || 'Server Error' });
+    }
+  });
+  
+  
+    
+
 export default router;

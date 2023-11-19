@@ -62,3 +62,23 @@ export  async function getAllOrders() {
     console.log(error);
   }
 }
+
+export async function setupStatus(url, id, data) {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "PUT", 
+      mode: "cors", 
+      cache: "no-cache", 
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: data, 
+    });
+
+    return response.json(); 
+  } catch (error) {
+    console.error("An error occurred:", error);
+    throw error; 
+  }
+}
