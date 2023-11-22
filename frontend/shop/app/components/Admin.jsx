@@ -4,13 +4,13 @@ import styles from '../styles/user.module.scss'
 import { useDispatch } from "react-redux";
 import {removeUser} from '../slices/userSlice';
 import { useRouter } from 'next/navigation'
-import { getOrdersByEmail, getAllOrders } from '../services/getData';
+import { getAllOrders } from '../services/getData';
 import { useState,  useEffect } from 'react';
 import Link from 'next/link';
 import { setupStatus } from '../services/getData';
 
 
-const User = () => {
+const Admin = () => {
     const [orders, setOrders] = useState([]);
     const [statusUpdated, setStatusUpdated] = useState(false);
     const {email, isAuth} = useAuth();
@@ -20,11 +20,7 @@ const User = () => {
     if(!isAuth) router.push('/auth');
 
     useEffect(()=>{
-      if(email === 'admin@mail.com'){
-        getAllOrders().then(res => setOrders(res));
-      }else{
-        getOrdersByEmail(email).then(res => setOrders(res));
-      }
+     getAllOrders().then(res => setOrders(res));
       setStatusUpdated(false);
     },[email]);
 
@@ -53,38 +49,29 @@ const User = () => {
         <h6>Orders history</h6>
         <div className={styles.ordersWrapp}>
        {orders.length ? 
-       <>
-       
-         {orders.map((item, index)=>(
-          <>
+       <>   
+            {orders.slice().reverse().map((item, index)=>(
           <div key={item.id}  className={styles.link} href={''}>
-
             {index === 0 || item.date !== orders[index - 1].date ? (
+                <>
                 <div className={styles.time}>
                     <span>{item.date}</span>
                 </div>
+                     <div className={styles.adminWrapp}>
+                     <span style={{textTransform: 'capitalize'}}>{item.firstname}</span>
+                     <span style={{textTransform: 'capitalize'}}>{item.surname}</span>
+                     <span>{item.phone}</span>
+                     <span>{item.email}</span>
+                 </div>
+                 </>
             ) : null}
-
-            {email === 'admin@mail.com' && (index === 0 || (item.date !== orders[index - 1].date && email === 'admin@mail.com')) ? (
-               <>
-
-
-            {orders.map((item, index)=>(
-            
-          <div key={item.id}  className={styles.link} href={''}>
-               {index === 0 || item.date !== orders[index - 1].date ? (
-                <div className={styles.time}>
-                    <span>{item.date}</span>
-                </div>
-            ) : null}
-                <div className={styles.adminWrapp}>
-                    <span style={{textTransform: 'capitalize'}}>{item.firstname}</span>
-                    <span style={{textTransform: 'capitalize'}}>{item.surname}</span>
-                    <span>{item.phone}</span>
-                    <span>{item.email}</span>
-                </div>
+           
              <Link href={`http://localhost:3000${item.path}`} style={{textDecoration: 'none'}}>
-                <div className={styles.item}>
+                <div className={styles.item}  style={{
+                       backgroundColor: item.status === 'processed' ? 'rgb(242, 30, 168, 0.5)' : (item.status === 'cancelled' ? 'rgb(140, 134, 138, 0.5)' : ''),
+                       color: item.status === 'processed' ||  'cancelled' ? 'black' : '' 
+
+                }}>
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.type}>{item.type}</div>
                   <div className={styles.image}>            
@@ -103,26 +90,6 @@ const User = () => {
           </div>
 
               ))}
-              </>
-            ) : null}
-
-            <Link href={`http://localhost:3000${item.path}`} style={{textDecoration: 'none'}}>
-                <div className={styles.item}>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.type}>{item.type}</div>
-                  <div className={styles.image}>            
-                    <img src={item.image} alt="image"/>
-                  </div>
-                  {item.volume ? <div className={styles.volume}>{item.volume}L</div> : <div className={styles.volume}>STANDART</div>}
-                  <div className={styles.price}>{item.price} <span style={{fontSize: '14px'}}>₴</span> </div>
-                  <div className={styles.status}>{item.status}</div>
-                </div>
-            </Link>
-
-          </div>
-         
-          </>
-        ))}
         </> : 
         <div className={styles.text}>No orders yet...</div>
       }
@@ -131,4 +98,4 @@ const User = () => {
   )
 }
 
-export default User
+export default Admin
