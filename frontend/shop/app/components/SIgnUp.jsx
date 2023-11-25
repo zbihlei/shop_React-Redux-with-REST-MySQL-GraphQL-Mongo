@@ -1,9 +1,9 @@
-import { Form } from '../components/Form'
+import { useRouter } from 'next/navigation';
 import { useDispatch } from "react-redux";
 import {setUser} from '../slices/userSlice';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../firebase-config';
-import { useRouter } from 'next/navigation'
+import { Form } from '../components/Form';
 
 const SignUp = ()=>{
     const dispatch = useDispatch();

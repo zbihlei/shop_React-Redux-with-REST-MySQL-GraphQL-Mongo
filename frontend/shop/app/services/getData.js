@@ -1,7 +1,8 @@
+import { BASE_URL } from "../utils/constants";
 
 export  async function getGeneral() {
    try {
-     const res = await fetch("http://localhost:8800");
+     const res = await fetch(`${BASE_URL}`);
        return res.json();
    } catch (error) {
      console.log(error);
@@ -10,7 +11,7 @@ export  async function getGeneral() {
 
  export  async function getSpecific(name) {
    try {
-     const res = await fetch(`http://localhost:8800/${name}`);
+     const res = await fetch(`${BASE_URL}/${name}`);
        return res.json();
    } catch (error) {
      console.log(error);
@@ -19,7 +20,7 @@ export  async function getGeneral() {
 
   export  async function getSpecificItem(name, id) {
    try {
-     const res = await fetch(`http://localhost:8800/${name}/${id}`);
+     const res = await fetch(`${BASE_URL}/${name}/${id}`);
        return res.json();
    } catch (error) {
      console.log(error);
@@ -48,7 +49,7 @@ export  async function getGeneral() {
 
 export  async function getOrdersByEmail(mail) {
   try {
-    const res = await fetch(`http://localhost:8800/orders?mail=${mail}`);
+    const res = await fetch(`${BASE_URL}/orders?mail=${mail}`);
       return res.json();
   } catch (error) {
     console.log(error);
@@ -56,7 +57,7 @@ export  async function getOrdersByEmail(mail) {
 }
 export  async function getAllOrders() {
   try {
-    const res = await fetch("http://localhost:8800/orders/all");
+    const res = await fetch(`${BASE_URL}/orders/all`);
       return res.json();
   } catch (error) {
     console.log(error);

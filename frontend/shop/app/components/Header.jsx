@@ -1,12 +1,11 @@
 "use client"
-import React from 'react'
-import Link from 'next/link'
-import { useSelector } from 'react-redux'
 
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const basket= useSelector((state)=>state.basket.basket);
 
+  const basket= useSelector((state)=>state.basket.basket);
 
   return (
     <header>
@@ -18,9 +17,7 @@ const Header = () => {
        </Link>
        <Link href='/basket'>
        <div className="basket">
-  
           {basket.length ? <span className='basket_quantity'>{basket.length}</span> : null }
-     
        </div>
        </Link>
      </header>

@@ -1,4 +1,4 @@
-
+@import  'variables';
 .wrapp{
     display: flex;
     justify-content: flex-end;
@@ -28,7 +28,7 @@
         &:focus{
             outline: none;
             transition: 0.8s ease;
-            border-color:rgb(242, 30, 168);
+            border-color:$pink;
         }
 
     }
@@ -45,12 +45,12 @@
     }
     button:hover{
         background-color: white;
-        color: rgb(242, 30, 168);
+        color: $pink;
     }
 }
 
 .error{
     width: 400px;
     padding: 0;
-    color: rgb(242, 30, 168);
+    color: $pink;
 }

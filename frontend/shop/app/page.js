@@ -1,6 +1,5 @@
 import {getGeneral} from './services/getData';
-import styles from './page.module.css'
-import Main from '../app/components/Main'
+import Main from '../app/components/Main';
 
 export default async  function Home() {
 

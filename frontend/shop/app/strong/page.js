@@ -1,5 +1,5 @@
 import {getSpecific} from '../services/getData';
-import ProductsList from '../components/ProductsList'
+import ProductsList from '../components/ProductsList';
 
 export default async function Strong() {
 

@@ -1,12 +1,12 @@
-"use client"
-import { Form } from '../components/Form'
+import { useRouter } from 'next/navigation';
 import { useDispatch } from "react-redux";
-import {setUser} from '../slices/userSlice';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import {app} from '../../firebase-config'
-import { useRouter } from 'next/navigation'
+import {app} from '../../firebase-config';
+import { Form } from '../components/Form';
+import {setUser} from '../slices/userSlice';
 
 const Login = ()=>{
+    
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -21,9 +21,8 @@ const Login = ()=>{
                 }));
             }).then( router.push('/'))
             .catch(() => alert('Invalid user!')) 
-
-
     }
+
     return ( 
         <Form
         title = 'Login'

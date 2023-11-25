@@ -1,6 +1,4 @@
-.wrapp{
-
-}
+@import  'variables';
 .item{
     margin-bottom: 20px;
     display: flex;
@@ -8,7 +6,7 @@
     flex-direction: row;
     gap: 40px;
     font-size: 18px;
-    color: rgb(242, 30, 168);
+    color: $pink;
     padding: 20px;
     background-color: rgb(205, 203, 203);
 

@@ -1,11 +1,9 @@
-"use client"
-import React from 'react'
-import styles from '../styles/modal.module.scss'
+import styles from '../styles/modal.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-
 function Modal({hide}) {
+
     const router = useRouter();
 
   return (

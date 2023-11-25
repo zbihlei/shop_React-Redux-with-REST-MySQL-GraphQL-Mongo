@@ -1,0 +1,16 @@
+@mixin btn {
+    cursor: pointer;
+    width: 120px;
+    height: 20px;
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase;
+    border: none;
+    background-color: inherit;
+}
+
+@mixin btn_hover{
+    transition: 0.8s ease;
+    color: $pink;
+    text-decoration: underline;
+}

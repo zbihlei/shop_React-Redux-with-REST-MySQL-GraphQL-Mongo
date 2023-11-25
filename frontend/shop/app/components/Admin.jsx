@@ -1,14 +1,17 @@
-"use client"
-import {useAuth} from '../hooks/useAuth'
-import styles from '../styles/user.module.scss'
-import { useDispatch } from "react-redux";
-import {removeUser} from '../slices/userSlice';
-import { useRouter } from 'next/navigation'
-import { getAllOrders } from '../services/getData';
-import { useState,  useEffect } from 'react';
-import Link from 'next/link';
-import { setupStatus } from '../services/getData';
+import styles from '../styles/user.module.scss';
 
+import {BASE_URL} from '../utils/constants';
+import {LOCAL_HOST} from '../utils/constants';
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState,  useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import {useAuth} from '../hooks/useAuth';
+
+import { getAllOrders } from '../services/getData';
+import { setupStatus } from '../services/getData';
+import {removeUser} from '../slices/userSlice';
 
 const Admin = () => {
     const [orders, setOrders] = useState([]);
@@ -24,9 +27,8 @@ const Admin = () => {
       setStatusUpdated(false);
     },[email]);
 
-
     const handleSubmit = (id, value) => {
-      const url = `http://localhost:8800/orders`;
+      const url = `${BASE_URL}/orders`;
       const data = JSON.stringify({ status: value });
     
       setupStatus(url, id, data)
@@ -37,8 +39,7 @@ const Admin = () => {
           setStatusUpdated(true);
         })
         .catch(error => console.error('Error:', error.message));
-    };
-    
+    }; 
 
   return (
     <div className={styles.wrapp}>
@@ -66,7 +67,7 @@ const Admin = () => {
                  </>
             ) : null}
            
-             <Link href={`http://localhost:3000${item.path}`} style={{textDecoration: 'none'}}>
+             <Link href={`${LOCAL_HOST}${item.path}`} style={{textDecoration: 'none'}}>
                 <div className={styles.item}  style={{
                        backgroundColor: item.status === 'processed' ? 'rgb(242, 30, 168, 0.5)' : (item.status === 'cancelled' ? 'rgb(140, 134, 138, 0.5)' : ''),
                        color: item.status === 'processed' ||  'cancelled' ? 'black' : '' 

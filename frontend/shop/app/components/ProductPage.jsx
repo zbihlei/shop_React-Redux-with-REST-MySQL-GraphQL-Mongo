@@ -1,11 +1,11 @@
 "use client"
-import React, { useEffect, useState, useRef } from 'react'
-import styles from '../styles/productPage.module.scss'
-import MyLoader from './Loader'
+
+import styles from '../styles/productPage.module.scss';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
 import { addToBasket } from '../slices/basketSlice';
-import { usePathname } from 'next/navigation'
-
+import { usePathname } from 'next/navigation';
+import MyLoader from './Loader';
 
 const ProductPage = ({title, specificProduct}) => {
 
@@ -131,6 +131,7 @@ const ProductPage = ({title, specificProduct}) => {
   };
   
   return (
+    
     <div className={`${styles.wrapp} 
     ${beer ? styles.beer : ''}
     ${energetic ? styles.energetic : ''}

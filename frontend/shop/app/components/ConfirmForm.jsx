@@ -1,13 +1,18 @@
 "use client"
-import React, { useState, useRef } from 'react'
+
+import styles from '../styles/confirmForm.module.scss';
+import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../hooks/useAuth';
+
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import styles from '../styles/confirmForm.module.scss'
-import { useDispatch, useSelector } from "react-redux"
-import { postData } from '../services/getData'
+
+import { postData } from '../services/getData';
 import { clearBasket } from '../slices/basketSlice';
-import { useRouter } from 'next/navigation'
-import { useAuth } from '../hooks/useAuth';
+
+import { BASE_URL } from '../utils/constants';
 
 const ConfirmForm = () => {
 
@@ -17,8 +22,6 @@ const ConfirmForm = () => {
   const router = useRouter();
   const {isAuth, email} = useAuth();
 
-
-
   const handleSubmit = (client) => {
     setIsClicked(true);
       const data = {
@@ -26,9 +29,8 @@ const ConfirmForm = () => {
         basket,
       }
       const jsonData = JSON.stringify(data);
-
         
-      postData("http://localhost:8800/orders", jsonData)
+      postData(`${BASE_URL}/orders`, jsonData)
         .then(res => {
           console.log(res);
         }).then(
@@ -52,7 +54,6 @@ const ConfirmForm = () => {
     transform: isClicked ? 'scale(1.2)' : null,
     color: isClicked ? 'white' : null,
   };
-
 
   return (
   <>

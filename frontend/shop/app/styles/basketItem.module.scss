@@ -1,3 +1,4 @@
+@import  'variables';
 .wrapp{
     min-height: 100%;
     display: flex;
@@ -38,7 +39,7 @@
     }
     .name:hover{
             background-color: black;
-            color: rgb(242, 30, 168);
+            color: $pink;
     }
     .description{
         font-size: 10px;
@@ -71,7 +72,7 @@
 .delete:hover{
     transition: 0.8s ease;
     background-color: white;
-    color: rgb(242, 30, 168);
+    color: $pink;
     text-decoration: underline;
     border: 1px solid rgb(231, 231, 231);
 }

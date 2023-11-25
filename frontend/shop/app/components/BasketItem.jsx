@@ -1,18 +1,17 @@
-"use client"
-import React from 'react'
-import Link from 'next/link'
-import styles from '../styles/basketItem.module.scss'
-import { useDispatch } from "react-redux"
+import styles from '../styles/basketItem.module.scss';
+import Link from 'next/link';
+import { useDispatch } from "react-redux";
 import {deleteFromBasket} from '../slices/basketSlice';
+import { LOCAL_HOST } from '../utils/constants';
 
 const BasketItem = ({id, type, name, image ,price, volume, quantity, path}) => {
-
-    const dispatch = useDispatch();
+   
+const dispatch = useDispatch();
 
   return (
     <div className={styles.wrapp}>
       <div  className={styles.item}>
-      <Link href={`http://localhost:3000/${path}`} key={id} style={{textDecoration: 'none'}}>
+      <Link href={`${LOCAL_HOST}/${path}`} key={id} style={{textDecoration: 'none'}}>
       <div className={styles.item} >
         <div className={styles.image}>
           <img src={image} alt="image" />

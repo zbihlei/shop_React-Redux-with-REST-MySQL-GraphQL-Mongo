@@ -1,4 +1,4 @@
-import ProductList from '../../components/ProductsList'
+import ProductList from '../../components/ProductsList';
 import { getSpecific } from '../../services/getData';
 
 export default async function Energetic(){

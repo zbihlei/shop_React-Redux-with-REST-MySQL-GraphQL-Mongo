@@ -1,15 +1,18 @@
-"use client"
-import {useAuth} from '../hooks/useAuth'
-import styles from '../styles/user.module.scss'
-import { useDispatch } from "react-redux";
-import {removeUser} from '../slices/userSlice';
-import { useRouter } from 'next/navigation'
-import { getOrdersByEmail } from '../services/getData';
+import styles from '../styles/user.module.scss';
 import { useState,  useEffect } from 'react';
+import {useAuth} from '../hooks/useAuth';
+import { useDispatch } from "react-redux";
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import {removeUser} from '../slices/userSlice';
+import { getOrdersByEmail } from '../services/getData';
+import { LOCAL_HOST } from '../utils/constants';
 
 
 const Customer = () => {
+
     const [orders, setOrders] = useState([]);
     const {email, isAuth} = useAuth();
     const dispatch = useDispatch();
@@ -18,10 +21,9 @@ const Customer = () => {
     if(!isAuth) router.push('/auth');
 
     useEffect(()=>{
-    getOrdersByEmail(email).then(res => setOrders(res));
+      getOrdersByEmail(email).then(res => setOrders(res));
     },[email]);
     
-
   return (
     <div className={styles.wrapp}>
       <div className={styles.top}>
@@ -41,7 +43,7 @@ const Customer = () => {
                 </div>
             ) : null}
 
-            <Link href={`http://localhost:3000${item.path}`} style={{textDecoration: 'none'}}>
+            <Link href={`${LOCAL_HOST}${item.path}`} style={{textDecoration: 'none'}}>
                 <div className={styles.item}>
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.type}>{item.type}</div>

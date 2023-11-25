@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styles from '../styles/authForm.module.scss';
+import { useState } from "react";
 
 const Form = ({ title, handleClick }) => {
   const [email, setEmail] = useState('');

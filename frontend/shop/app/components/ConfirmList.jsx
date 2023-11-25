@@ -1,12 +1,12 @@
 "use client"
-import React from 'react'
-import { useSelector } from "react-redux"
+
+import styles from '../styles/confirmList.module.scss';
+import { useSelector } from "react-redux";
 import ConfirmListItem from '../components/ConfirmListItem';
-import styles from '../styles/confirmList.module.scss'
 
 const ConfirmList = () => {
+  
     const basket= useSelector((state)=>state.basket.basket);
-
     const prices = basket.map((item) =>  item.price);
     const sum = prices.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 

@@ -1,14 +1,15 @@
 "use client"
-import React from 'react'
-import styles from '../styles/main.module.scss'
-import Link from 'next/link'
-import {useAuth} from '../hooks/useAuth'
-import { useEffect, useState } from 'react'
-import Modal from '../components/Modal'
+
+import styles from '../styles/main.module.scss';
+import Link from 'next/link';
+import {useAuth} from '../hooks/useAuth';
+import { useEffect, useState } from 'react';
+import Modal from '../components/Modal';
 
 export default function Main({general}) {
 
   const [modalVisible, setModalVisible] = useState(true);
+  const {isAuth, email} = useAuth();
 
   useEffect(() => {
     const isModalShown = localStorage.getItem('isModalShown');
@@ -17,15 +18,12 @@ export default function Main({general}) {
     } else {
       setModalVisible(true);
     }
-
   }, []);
 
   function hideModal(){
     setModalVisible(false);
     localStorage.setItem('isModalShown', 'true');
   }
-
-const {isAuth, email} = useAuth();
 
   return (
     <div className={styles.wrapp}>

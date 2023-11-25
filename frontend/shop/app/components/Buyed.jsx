@@ -1,10 +1,11 @@
 "use client"
-import React from 'react'
-import styles from '../styles/buyed.module.scss'
-import { useRouter } from 'next/navigation'
+
+import styles from '../styles/buyed.module.scss';
+import { useRouter } from 'next/navigation';
 
 const Buyed = () => {
-    const router = useRouter();
+    
+  const router = useRouter();
 
     setTimeout(()=>{
         router.push('/');

@@ -1,3 +1,6 @@
+@import  'variables';
+@import 'mixins';
+
 .authpage{
     min-height: 100%;
     display: flex;
@@ -13,19 +16,10 @@
     line-height: 100px;
     margin-top: 20px;
     button{
-        cursor: pointer;
-        width: 120px;
-        height: 20px;
-        color: black;
-        font-size: 18px;
-        text-transform: uppercase;
-        border: none;
-        background-color: inherit;
+      @include btn;
     }
     button:hover{
-        transition: 0.8s ease;
-        color: rgb(242, 30, 168);
-        text-decoration: underline;
+        @include btn_hover;
     }
 
 }

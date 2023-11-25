@@ -1,3 +1,4 @@
+@import  'variables';
 .wrapp{
     min-height: 100%;
     display: flex;
@@ -13,7 +14,7 @@
     width: 120px;
     text-align: center;
     height: 40px;
-    background-color: rgb(242, 30, 168);
+    background-color: $pink;
     color: white;
     font-size: 24px;
     text-transform: uppercase;
@@ -26,6 +27,6 @@
 .confirm:hover{
     transition: 0.8s ease;
     background-color: white;
-    color:  rgb(242, 30, 168);
+    color: $pink;
 }
     

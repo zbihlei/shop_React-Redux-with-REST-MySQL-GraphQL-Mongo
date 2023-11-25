@@ -1,3 +1,4 @@
+@import  'variables';
 .wrapp{
     display: flex;
     flex-direction: column;
@@ -9,6 +10,6 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 22px;
-    background-color: rgb(242, 30, 168);
+    background-color: $pink;
     padding: 10px 20px;
 }

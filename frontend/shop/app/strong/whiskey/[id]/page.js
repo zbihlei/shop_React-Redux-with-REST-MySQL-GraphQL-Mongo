@@ -1,6 +1,5 @@
-import ProductPage from '../../../components/ProductPage' 
-import { getSpecificItem } from '../../../services/getData'
-
+import ProductPage from '../../../components/ProductPage';
+import { getSpecificItem } from '../../../services/getData';
 
 export default async function SingleProductPage({params}){
   

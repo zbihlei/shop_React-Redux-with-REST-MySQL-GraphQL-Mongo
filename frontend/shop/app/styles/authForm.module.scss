@@ -1,3 +1,4 @@
+@import  'variables';
 .formauth{
     display: flex;
     justify-content: center;
@@ -16,7 +17,7 @@
         &:focus{
             outline: none;
             transition: 0.8s ease;
-            border-color:rgb(242, 30, 168);
+            border-color:$pink;
         }
         
     }
@@ -34,7 +35,7 @@
     button:hover{
         transition: 0.8s ease;
         background-color: white;
-        color: rgb(242, 30, 168);
+        color: $pink;
         text-decoration: underline;
         border: 1px solid rgb(231, 231, 231);
     }

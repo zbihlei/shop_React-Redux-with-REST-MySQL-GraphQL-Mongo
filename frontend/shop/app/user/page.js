@@ -1,8 +1,7 @@
 "use client"
-import React from 'react'
 import Admin from '../components/Admin'
-import Customer from '../components/Customer'
-import {useAuth} from '../hooks/useAuth'
+import Customer from '../components/Customer';
+import {useAuth} from '../hooks/useAuth';
 
 export default function UserPage(){
   const {email} = useAuth();

@@ -1,7 +1,6 @@
-"use client"
-import React from 'react'
-import Link from 'next/link'
 import styles from '../styles/confirmListItem.module.scss'
+import Link from 'next/link'
+import { LOCAL_HOST } from '../utils/constants'
 
 const ConfirmListItem = ({id, type, name, image ,price, volume, quantity, path}) => {
 
@@ -9,7 +8,7 @@ const ConfirmListItem = ({id, type, name, image ,price, volume, quantity, path})
     <>
         <div className={styles.wrapp}>
       <div className={styles.item}>
-      <Link href={`http://localhost:3000/${path}`} key={id} style={{textDecoration: 'none'}}>
+      <Link href={`${LOCAL_HOST}/${path}`} key={id} style={{textDecoration: 'none'}}>
       <div className={styles.item} >
         <div className={styles.name}>
           {name}
