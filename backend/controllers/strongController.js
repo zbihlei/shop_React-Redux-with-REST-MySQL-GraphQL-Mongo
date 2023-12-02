@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/strong", (req,res)=>{
+router.get("/", (req,res)=>{
     const { db } = req;
     const q = "SELECT * FROM shop_db.strong";
     db.query(q,(err,data)=>{
