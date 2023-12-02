@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {useAuth} from '../hooks/useAuth';
 import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
+import Search from '../components/Search';
 
 export default function Main({general}) {
 
@@ -31,6 +32,7 @@ export default function Main({general}) {
       <>
       <div className={styles.name}>Hello <Link href='/user' className={styles.link}>{email}</Link> </div>
       </>: null}
+      <Search/>
 
       {modalVisible && <Modal hide={hideModal} />}
 
