@@ -19,7 +19,7 @@ const Login = ()=>{
                     id: user.uid,
                     token:user.accessToken,
                 }));
-            }).then( router.push('/'))
+            }).then( router.push('/user'))
             .catch(() => alert('Invalid user!')) 
     }
 

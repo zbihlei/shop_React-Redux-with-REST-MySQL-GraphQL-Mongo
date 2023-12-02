@@ -2,6 +2,9 @@
 @import 'mixins';
 
 .authpage{
+    background-image: url('../images//open.jpeg');
+    background-size: cover;
+    background-position: 0 -50px;
     min-height: 100%;
     display: flex;
     justify-content: center;
@@ -11,6 +14,9 @@
 
 .authpage_head{
     margin-bottom: 20px;
+    span{
+        color: $pink;
+    }
 }
 .authpage_link{
     line-height: 100px;

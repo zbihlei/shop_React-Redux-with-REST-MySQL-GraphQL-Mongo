@@ -22,9 +22,9 @@ const Auth = () => {
   <div className={styles.authpage}>
 
     { register ? 
-    <h3 className={styles.authpage_head}>Register</h3> 
+    <h3 className={styles.authpage_head}><span>R</span>egister</h3> 
     :
-    <h3 className={styles.authpage_head}>Log in</h3> }
+    <h3 className={styles.authpage_head}>Log <span>in</span></h3> }
     
     <div className={styles.authpage_form}>
     { register ? <SignUp/> : <Login/>}

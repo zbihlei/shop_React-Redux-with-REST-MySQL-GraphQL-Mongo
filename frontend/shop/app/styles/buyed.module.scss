@@ -1,5 +1,7 @@
 @import  'variables';
 .wrapp{
+    background-image: url('../images//back.jpeg');
+    background-size: contain;
     min-height: 100%; 
     display: flex;
     align-items: center;

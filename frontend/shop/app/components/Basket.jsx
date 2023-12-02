@@ -18,7 +18,7 @@ const Basket = () => {
       <BasketItem key={item.id} {...item} />
     ))
   ) : (
-    <div className={styles.empty}>Basket is empty!</div>
+    <div className={styles.empty}>Basket is <span>empty!</span></div>
   )}
   {basket.length > 0 && <Link className={styles.confirm} href="/confirm">Confirm → </Link>}
 

@@ -83,7 +83,7 @@ const ConfirmForm = () => {
       >
   <div className={styles.wrapp}> 
           <Form className={styles.form}>
-              <h2>client info</h2>
+              <h2><span>client</span> info</h2>
   
            <label htmlFor="text">name</label>
            <Field
