@@ -29,10 +29,13 @@ const goodsSlice = createSlice({
     
     clearBasket(state) {
       state.basket = initialState.basket;
+    },
+    updateBasket: (state, { payload }) => {
+      state.basket = payload;
     }
   }
 });
 
-export const { addToBasket, deleteFromBasket, clearBasket } = goodsSlice.actions;
+export const { addToBasket, deleteFromBasket, clearBasket, updateBasket } = goodsSlice.actions;
 
 export default goodsSlice.reducer;
