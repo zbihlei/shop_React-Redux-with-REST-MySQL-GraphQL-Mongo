@@ -3,6 +3,7 @@ import mysql  from "mysql";
 import cors from "cors";
 import bodyParser from "body-parser";
 import main from './controllers/mainController.js';
+import search from './controllers/searchController.js';
 import lite from './controllers/liteController.js';
 import strong from './controllers/strongController.js';
 import beer from './controllers/beerController.js';
@@ -50,6 +51,7 @@ app.use((err, req, res, next) => {
 
 //controllers
 app.use('/', main);
+app.use('/', search);
 app.use('/lite', lite);
 app.use('/strong', strong);
 app.use('/beer', beer);

@@ -9,6 +9,15 @@ export  async function getGeneral() {
    }
  }
 
+ export async function searchByName(name) {
+  try {
+      const res = await fetch(`${BASE_URL}/search?name=${encodeURIComponent(name)}`);
+      return res.json();
+  } catch (error) {
+      console.log(error);
+  }
+}
+
  export  async function getSpecific(name) {
    try {
      const res = await fetch(`${BASE_URL}/${name}`);

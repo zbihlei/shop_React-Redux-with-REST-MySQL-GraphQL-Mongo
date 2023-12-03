@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import Search from '../components/Search';
 
 const Header = () => {
 
@@ -9,17 +10,17 @@ const Header = () => {
 
   return (
     <header>
-    <Link href='/auth'>
-       <div className="user"></div>
-       </Link>
-     <Link href='/'>
-       <div className="logo"></div>
-       </Link>
-       <Link href='/basket'>
-       <div className="basket">
+    <div className='left'>
+      <Link href='/' className='logo'/>
+      <Search/>
+    </div>
+
+    <div className='right'>
+    <Link href='/auth' className='user'/>
+    <Link href='/basket' className='basket'>
           {basket.length ? <span className='basket_quantity'>{basket.length}</span> : null }
-       </div>
-       </Link>
+     </Link>
+    </div>
      </header>
   )
 }

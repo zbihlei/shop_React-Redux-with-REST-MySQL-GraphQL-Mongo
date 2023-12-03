@@ -20,11 +20,29 @@ header, footer {
 }
 header {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
+
+.left{
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.right{
+  margin-right: 40px;
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  justify-content: space-evenly;
+}
+
 .logo{
+  margin-left: 40px;
   background-image: url('../app//images//logo.svg');
-  width: 100px;
+  width: 40px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,7 +51,7 @@ header {
 
 .user{
   background-image: url('../app/images//user.svg');
-  width: 100px;
+  width: 40px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,7 +60,7 @@ header {
 
 .basket{
   background-image: url('../app/images//basket.svg');
-  width: 100px;
+  width: 40px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +70,7 @@ header {
 .basket_quantity{
   position: absolute;
   top: 20px;
-  right: 70px;
+  right: -20px;
   color: white;
   text-decoration: none;
   font-size: 14px;
@@ -70,6 +88,7 @@ header {
 .user:hover{
   background-image: url('../app//images//user_pink.svg');
 }
+
 footer{
   text-transform: lowercase;
   display: flex;
