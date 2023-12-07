@@ -23,6 +23,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  position: relative; /* ? */
 }
 
 .left{
@@ -35,9 +36,12 @@ header {
   margin-right: 40px;
   display: flex;
   flex-direction: row;
-  /* width: 20%; */
   justify-content: space-evenly;
   align-items: center;
+}
+
+.right_sm{ 
+  display: none;
 }
 
 .logo{
@@ -113,4 +117,18 @@ footer{
 }
 .nf_link{
   color: black;
+}
+
+@media screen and (max-width: 768px ){
+  header{
+
+  }
+  .right{
+    display: none;
+  }
+  .right_sm{
+    display: flex;
+    position: relative;
+  }
+
 }

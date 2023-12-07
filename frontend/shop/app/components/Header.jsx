@@ -30,6 +30,20 @@ const Header = () => {
           {basket.length ? <span className='basket_quantity'>{basket.length}</span> : null }
      </Link>
     </div>
+
+    <div className='right_sm'>
+      
+      {isAuth ? 
+      <>
+        <div className={styles.name}>Hello <Link href='/user' className={styles.link}>{email}</Link> </div>
+      </>: null}
+    <Link href='/' className='logo'/>
+    <Link href='/auth' className='user'/>
+    <Link href='/basket' className='basket'>
+          {basket.length ? <span className='basket_quantity'>{basket.length}</span> : null }
+    </Link>
+
+    </div>
      </header>
   )
 }

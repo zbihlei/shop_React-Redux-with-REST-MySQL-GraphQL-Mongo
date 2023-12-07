@@ -10,6 +10,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 -800px;
+  
+     
+    @media screen and (max-width: $breakpoint-small){
+      flex-direction: column;
+      background-color: lightgray;
+      background-image: none;
+    }
 }
 
   .link{
@@ -20,14 +27,7 @@
 
   .name{
       color: $pink;
-      // position: absolute;
-      // top: 10px;
       font-size: 24px;
-      // background-color: black;
-      // width: 100%;
-      
-      // top: -10px;
-      // z-index: 999;
   }
 
 
@@ -42,7 +42,7 @@
     align-items: center;
     font-size: 50px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: transform 0.7s ease-in-out;
 
 
@@ -73,6 +73,7 @@
     filter: grayscale(100%); 
     background-size: cover;
     transition: opacity 1.5s ease-in-out, filter 2s ease-in-out;
+    
   }
   
   .part.background1::before {
@@ -88,11 +89,19 @@
   .part:hover::before {
     filter: grayscale(0%);
     opacity: 1;
+
+    @media screen and (max-width: $breakpoint-small){
+      filter: grayscale(100%);
+      opacity: 0;
+    }
   }
   
   .part:hover {
     color: $pink;
     transition: transform 0.7s ease-in-out;
   }
+
+
+
 
 
