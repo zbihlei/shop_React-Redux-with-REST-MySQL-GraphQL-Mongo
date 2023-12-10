@@ -39,7 +39,7 @@ export default function Main({general}) {
           <span>{gen.type}</span>
         </Link>
       ))}
-    </div>
+  </div>
   );
 }
 

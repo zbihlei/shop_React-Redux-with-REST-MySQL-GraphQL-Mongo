@@ -77,4 +77,8 @@
     }
 }
   
-  
+@media (min-width: $breakpoint-small) {
+    .wrapp {
+      overflow-x: auto; 
+    }
+  } 

@@ -10,13 +10,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 -800px;
-  
-     
-    @media screen and (max-width: $breakpoint-small){
-      flex-direction: column;
-      background-color: lightgray;
-      background-image: none;
-    }
 }
 
   .link{
@@ -89,11 +82,6 @@
   .part:hover::before {
     filter: grayscale(0%);
     opacity: 1;
-
-    @media screen and (max-width: $breakpoint-small){
-      filter: grayscale(100%);
-      opacity: 0;
-    }
   }
   
   .part:hover {
@@ -101,7 +89,44 @@
     transition: transform 0.7s ease-in-out;
   }
 
+  .burger{
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 4px solid white;
+    border-top: 4px solid white;
+    background-color: inherit;
+    border-radius: 3px;
+    margin-top: 25px;
+    margin-right: 30px;
+      span{
+        display: block;
+        height: 4px;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 3px;
+        background-color: white;
+      }
+  }
 
+  @media (max-width: $breakpoint-small){
+    .wrapp{
+      flex-direction: column;
+    }
+    .part:hover::before {
+      filter: grayscale(100%);
+      opacity: 0;
+    }
+  }
 
-
-
+  @media screen and (max-width: $breakpoint-medium){
+    .wrapp{
+      background-size: cover;
+      background-position: 0 0;
+    } 
+    .burger{
+      display: block;
+    }
+  }

@@ -42,7 +42,7 @@ const Search = () => {
 
   return (
     <div className={styles.wrapp}>
-        <div className={styles.serachhead}>today  I <span>want</span>...</div>
+        <div className={styles.searchhead}>today  I <span>want</span>...</div>
     <input onChange={Search} type="search" className={styles.searchfield} />
     {search.length > 0 ? 
        <div className={`${styles.searchbox} ${styles.scrollable}`}>

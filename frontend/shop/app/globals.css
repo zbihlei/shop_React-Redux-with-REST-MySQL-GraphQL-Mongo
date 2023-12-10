@@ -9,7 +9,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  height: 100%;
+  height: 100vh;
 }
 
 header, footer {
@@ -23,14 +23,13 @@ header {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  position: relative; /* ? */
 }
 
 .left{
   display: flex;
   width: 50%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .right{
   margin-right: 40px;
@@ -46,8 +45,9 @@ header {
 
 .logo{
   margin-left: 40px;
+  margin-right: 10px;
   background-image: url('../app//images//logo.svg');
-  width: 40px;
+  width: 50px;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -119,16 +119,11 @@ footer{
   color: black;
 }
 
-@media screen and (max-width: 768px ){
-  header{
-
-  }
+@media screen and (max-width: 992px ){
   .right{
     display: none;
   }
-  .right_sm{
-    display: flex;
-    position: relative;
+  .logo{
+    display: none;
   }
-
 }
