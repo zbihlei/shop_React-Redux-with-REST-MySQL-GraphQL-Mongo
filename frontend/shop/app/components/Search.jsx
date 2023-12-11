@@ -5,6 +5,7 @@ import { updateBasket } from '../slices/basketSlice';
 import Link from 'next/link';
 import { LOCAL_HOST } from '../utils/constants';
 import { searchByName } from '../services/getData';
+import { useDebounce } from '../hooks/useDebounce';
 import styles from '../styles/search.module.scss';
 
 const Search = () => {
@@ -14,8 +15,14 @@ const Search = () => {
   const basket = useSelector((state) => state.basket.basket);
   const dispatch = useDispatch();
 
+// debounced search val
+  const debouncedSetFilter = useDebounce((value) => {
+    setFilter(value);
+  }, 700);
+
   const Search = (e) =>{
-    setFilter(e.target.value)
+    const value = e.target.value;
+    debouncedSetFilter(value);
   }
 
  // when we go Link basket state is saved 
@@ -25,7 +32,7 @@ const Search = () => {
 
   const handleCLick = ()=>{
     setSearch([]);
-     setFilter('');
+    setFilter('');
     const newBasket = [...memoizedBasket];
     dispatch(updateBasket(newBasket));
   }
