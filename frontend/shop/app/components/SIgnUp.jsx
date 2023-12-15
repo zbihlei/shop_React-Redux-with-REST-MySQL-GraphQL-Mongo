@@ -32,4 +32,3 @@ const SignUp = ()=>{
 }
 
 export {SignUp}
-
