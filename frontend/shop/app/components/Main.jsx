@@ -4,10 +4,18 @@ import styles from '../styles/main.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
+import { useQuery } from '@apollo/client';
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import {GET_GENERAL} from '../services/apollo/queries';
+if (process.env.NODE_ENV === 'development') { 
+  loadDevMessages();
+  loadErrorMessages();
+}
 
 export default function Main({general}) {
 
   const [modalVisible, setModalVisible] = useState(true);
+  const { loading, data } =  useQuery(GET_GENERAL);
 
   useEffect(() => {
     const isModalShown = localStorage.getItem('isModalShown');
@@ -28,7 +36,8 @@ export default function Main({general}) {
      
       {modalVisible && <Modal hide={hideModal} />}
 
-      {general.map(gen => (
+      {/* sql version */}
+      {/* {general.map(gen => (
         <Link 
         importance="high"
         rel="preload"   
@@ -38,7 +47,22 @@ export default function Main({general}) {
         >
           <span>{gen.type}</span>
         </Link>
-      ))}
+      ))} */}
+
+      {!loading && data && data.getGeneral && (
+
+        data.getGeneral.map(gen => (
+          <Link
+            importance="high"
+            rel="preload"
+            key={gen._id}
+            href={gen.name}
+            className={`${styles.part} ${gen._id === 1 ? styles.background1 : styles.background2}`}
+          >
+            <span>{gen.name}</span>
+          </Link>
+        ))
+      )}
   </div>
   );
 }

@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@emotion/react": "^11.11.1",
     "@reduxjs/toolkit": "^1.9.7",
     "dotenv": "^16.3.1",
     "firebase": "^10.5.2",
     "formik": "^2.4.5",
+    "graphql": "^16.8.1",
     "next": "^14.0.2",
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",

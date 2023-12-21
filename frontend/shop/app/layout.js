@@ -8,6 +8,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MenuSM from './components/MenuSM';
 import { useState } from 'react';
+import { ApolloProvider } from '@apollo/client';
+import client from  '../apolloClient';
 
 const sm = Space_Mono({ subsets: ['latin'] , weight:'400' });
 
@@ -26,11 +28,13 @@ const handleMenuSMClick = (e) => {
         <meta name="description" content="developed by create next app" />
   </Head>
        <body className={sm.className}>
+       <ApolloProvider client={client}>
           <ReduxProvider>
           <Header onHeaderClick={handleMenuSMClick}/>
             <MenuSM onClick={menuSMClick}/>
               {children}
            </ReduxProvider>
+        </ApolloProvider>
       <Footer/>
        </body>
     </html>
