@@ -41,13 +41,12 @@ export default function Main({general, gqlQuery}) {
       {modalVisible && <Modal hide={hideModal} />}
 
       {/* {general.map(gen => (  using with sql*/}
-      {list.map(gen => (
+      {list.map((gen, index) => (
         <Link 
         importance="high"
         rel="preload"   
-        // key={gen.id}  
-        // href={gen.type}
-        key={gen._id}   
+        key={index}  
+        // href={gen.type} 
         href={gen.name} 
         className={`${styles.part} ${gen.id === 1 ? styles.background1 : styles.background2}`}
         >

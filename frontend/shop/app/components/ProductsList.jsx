@@ -39,11 +39,11 @@ const ProductList = ({specific, title, gqlQuery}) => {
     ${whiskey ? styles.whiskey : ''}`}>
 
     {/* {specific.map(item => ( */ /*using with sql*/} 
-    {list.map(item => (
+    {list.map((item, index) => (
     <>
     {item.type ?  
     
-    <Link importance="high" rel="preload"  href={`${LOCAL_HOST}/${item.type}/${title}/${item.id}`} key={item.id} style={{textDecoration: 'none'}}>
+    <Link importance="high" rel="preload"  href={`${LOCAL_HOST}/${item.type}/${title}/${item.id}`} key={index} style={{textDecoration: 'none'}}>
     <div className={styles.item} >
       <div className={styles.image}>
         <img src={item.image} alt="image" /> 
@@ -58,7 +58,7 @@ const ProductList = ({specific, title, gqlQuery}) => {
   
    :   
 
-    <Link importance="high" rel="preload"   href={`${LOCAL_HOST}/${title}/${item.name}`} key={item.id} style={{textDecoration: 'none'}}>
+    <Link importance="high" rel="preload"  href={`${LOCAL_HOST}/${title}/${item.name}`} key={index} style={{textDecoration: 'none'}}>
     <div className={styles.item} >
     <div className={styles.image}>
         <img src={item.image} alt="image" />
