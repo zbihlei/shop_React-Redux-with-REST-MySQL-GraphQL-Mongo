@@ -1,10 +1,25 @@
+"use client"
+
 import styles from '../styles/productsList.module.scss';
 import Link from 'next/link';
 import { LOCAL_HOST } from '../utils/constants';
 
-const ProductList = ({specific, title}) => {
+import { useQuery } from '@apollo/client';
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
-  const barCount = specific && specific.some(item => item.type);
+if (process.env.NODE_ENV === 'development') { //dev mode only
+  loadDevMessages();
+  loadErrorMessages();
+}
+
+const ProductList = ({specific, title, gqlQuery}) => {
+
+  const { data } =  useQuery(gqlQuery);
+  const firstKey = data ? Object.keys(data)[0] : null;
+  const list = firstKey ? data[firstKey] : [];
+
+  const barCount = list && list.some(item => item.type);
+  // const barCount = specific && specific.some(item => item.type);
   const beer = title  === 'beer';
   const energetic = title  === 'energetic';
   const coctail = title  === 'coctail';
@@ -23,7 +38,8 @@ const ProductList = ({specific, title}) => {
     ${wine ? styles.wine : ''}
     ${whiskey ? styles.whiskey : ''}`}>
 
-    {specific.map(item => (
+    {/* {specific.map(item => ( */ /*using with sql*/} 
+    {list.map(item => (
     <>
     {item.type ?  
     
@@ -56,6 +72,7 @@ const ProductList = ({specific, title}) => {
  }
     </>
       ))}
+
 </div>
   )
 }

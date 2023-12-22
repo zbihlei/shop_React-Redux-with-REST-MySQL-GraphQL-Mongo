@@ -8,3 +8,21 @@ export const GET_GENERAL = gql`
     }
   }
 `;
+export const GET_STRONG = gql`
+  query{
+    getStrong {
+      _id
+      name
+      image
+    }
+  }
+`;
+export const GET_LITE = gql`
+  query{
+    getLite {
+      _id
+      name
+      image
+    }
+  }
+`;

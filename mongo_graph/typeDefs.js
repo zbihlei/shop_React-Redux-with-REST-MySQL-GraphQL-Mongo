@@ -6,8 +6,15 @@ const typeDefs = gql `
         _id: ID,
         name: String
     }
+    type Categories {
+        _id: ID,
+        name: String,
+        image: String
+    }
     type Query {
-        getGeneral: [General]
+        getGeneral: [General],
+        getLite: [Categories],
+        getStrong: [Categories]
     }
  `;
 
