@@ -48,7 +48,8 @@ export default function Main({general, gqlQuery}) {
         key={index}  
         // href={gen.type} 
         href={gen.name} 
-        className={`${styles.part} ${gen.id === 1 ? styles.background1 : styles.background2}`}
+        // className={`${styles.part} ${gen.id === 1 ? styles.background1 : styles.background2}`}
+        className={`${styles.part} ${gen.id === '6585aec47ebe3fec296f7fa1' ? styles.background1 : styles.background2}`}
         >
           {/* <span>{gen.type}</span> */}
           <span>{gen.name}</span>

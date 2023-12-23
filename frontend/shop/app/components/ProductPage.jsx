@@ -7,7 +7,25 @@ import { addToBasket } from '../slices/basketSlice';
 import { usePathname } from 'next/navigation';
 import MyLoader from './Loader';
 
-const ProductPage = ({title, specificProduct}) => {
+import { useQuery } from '@apollo/client';
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+
+if (process.env.NODE_ENV === 'development') { //dev mode only
+  loadDevMessages();
+  loadErrorMessages();
+}
+
+const ProductPage = ({title, specificProduct, gqlQuery}) => {
+  
+  const pathname = usePathname(); //also need with sql
+
+  const id = pathname.split('/').pop();
+  const { data } = useQuery(gqlQuery, {
+    variables: { id: id },
+  });
+  const firstKey = data ? Object.keys(data)[0] : null;
+  const prod = firstKey ? data[firstKey] : [];
+
 
   const beer = title  === 'beer';
   const energetic = title  === 'energetic';
@@ -16,7 +34,7 @@ const ProductPage = ({title, specificProduct}) => {
   const wine = title  === 'wine';
   const whiskey = title  === 'whiskey';
 
-  const prod = specificProduct[0];
+  // const prod = specificProduct[0];
   let firstVol;
     if (prod.volume) {
   firstVol = prod.volume.split(' / ')[0];
@@ -32,9 +50,8 @@ const ProductPage = ({title, specificProduct}) => {
   const [isClicked, setIsClicked] = useState(false);
   
   const dispatch = useDispatch();
-  const pathname = usePathname();
-  const quantityRef = useRef(quantity);
-  
+  const quantityRef = useRef(quantity);  
+
   useEffect(() => {
     splitDescription(prod.description);
     volumes();

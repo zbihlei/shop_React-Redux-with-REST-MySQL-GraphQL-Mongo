@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const GeneralSchema = new mongoose.Schema({
     _id: {
-        type: Number,
+        type: mongoose.Types.ObjectId,
         required: true
     },
     name: {
