@@ -31,7 +31,12 @@ const typeDefs = gql `
         getCraft: [Subcategories],
         getWhiskey: [Subcategories],
         getWine: [Subcategories],
-        getBeerById(id: ID): Subcategories
+        getBeerById(id: ID): Subcategories,
+        getEnergeticById(id: ID): Subcategories,
+        getCraftById(id: ID): Subcategories,
+        getCoctailById(id: ID): Subcategories,
+        getWhiskeyById(id: ID): Subcategories,
+        getWineById(id: ID): Subcategories
     }
  `;
 

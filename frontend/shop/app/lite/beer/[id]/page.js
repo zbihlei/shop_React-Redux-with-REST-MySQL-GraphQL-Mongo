@@ -4,9 +4,9 @@ import { gql } from '@apollo/client';
 
 export default async function SingleProductPage({params}){
 
-    const title = 'beer';
-    const query= gql`
-      query GetById($id: ID!) {
+  const title = 'beer';
+  const query= gql`
+    query GetById($id: ID!) {
         getBeerById(id: $id) {
           _id
           name

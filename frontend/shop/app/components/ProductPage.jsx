@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
 import { addToBasket } from '../slices/basketSlice';
 import { usePathname } from 'next/navigation';
-import MyLoader from './Loader';
+// import MyLoader from './Loader';
 
 import { useQuery } from '@apollo/client';
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
@@ -35,16 +35,16 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
   const whiskey = title  === 'whiskey';
 
   // const prod = specificProduct[0];
-  let firstVol;
-    if (prod.volume) {
-  firstVol = prod.volume.split(' / ')[0];
-}
+//   let firstVol;
+//     if (prod.volume) {
+//   firstVol = prod.volume.split(' / ')[0];
+// }
 
-  const [description, setDescription] = useState([]);
+  // const [description, setDescription] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [volume, setVolume] = useState([]);
+  const [volume, setVolume] = useState([]); // firstVol initial state with sql
   const [quantity, setQuantity] = useState(1);
-  const [chosenVol, setChosenVol] = useState(firstVol);
+  const [chosenVol, setChosenVol] = useState();
   const [pricesWithVolumes, setPricesWithVolumes] = useState({});
   const [totalPrice, setTotalPrice] = useState(0); 
   const [isClicked, setIsClicked] = useState(false);
@@ -53,7 +53,7 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
   const quantityRef = useRef(quantity);  
 
   useEffect(() => {
-    splitDescription(prod.description);
+    // splitDescription(prod.description);
     volumes();
     calculateNewPrices(prod.price, volume);
     calculateTotalPrice();
@@ -110,18 +110,18 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
 
   //split the text 2 col
 
-  function splitDescription(){
-    const regex = /([^:]+):(.+)/g;
-    let match;
-    const rows = [];
-    while ((match = regex.exec(prod.description)) !== null) {
-      const key = match[1].trim();
-      const value = match[2].trim();
-      rows.push({ key, value });
-    }
-    setDescription(rows);
-    setLoading(false);
-  }
+  // function splitDescription(){
+  //   const regex = /([^:]+):(.+)/g;
+  //   let match;
+  //   const rows = [];
+  //   while ((match = regex.exec(prod.description)) !== null) {
+  //     const key = match[1].trim();
+  //     const value = match[2].trim();
+  //     rows.push({ key, value });
+  //   }
+  //   setDescription(rows);
+  //   setLoading(false);
+  // }
 
     //prices with volumes
 
@@ -164,7 +164,7 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
       </div>
       <div className={styles.right}>
         <div className={styles.name}>{prod.name}</div>
-        <div className={styles.description}>
+        {/* <div className={styles.description}>
         <>
         {loading ?  
         <div className={styles.loading}>
@@ -174,14 +174,18 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
             </li>
           </ul>
         </div>
-        :  description.map((item, index) => (
+        :
+         description.map((item, index) => (   
           <ul key={index} className={styles.descriptionList}>
             <li className={styles.description__column}>{item.key}:</li> 
             <li className={styles.description__column}>{item.value}</li>
           </ul>
         ))}
       </>
-        </div>
+        </div> */}
+      <div className={styles.descriptionList}>
+        {prod.description}
+      </div>
 
         <div className={styles.low}>
           <div className={styles.price}>
@@ -195,13 +199,25 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
               <button onClick={()=>handleQuantityChange(Math.max(1, quantityRef.current + 1))}>+</button>
             </div>
             <div className={styles.volume}>
-              {volume.map((item)=>(
+            {volume.length === 1 ? 
+            <>
+            {volume.map((item)=>(
+                <span key={item} 
+                      style ={{backgroundColor : 'black', color: 'white'}}>
+                        {item}L
+                </span> 
+              ))}
+            </>
+            :
+            <>
+            {volume.map((item)=>(
                 <span key={item} 
                       onClick={()=>setChosenVol(item)} 
                       style ={{backgroundColor : chosenVol === item ? 'black' : 'white', color: chosenVol === item ? 'white' : 'black'}}>
                         {item}L
                 </span> 
               ))}
+            </>}
             </div>
             <div className={styles.buy}>
               <button  onClick={()=>handleClick()}

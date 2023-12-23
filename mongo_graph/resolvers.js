@@ -1,7 +1,6 @@
   import General from './models/General.model.js';
   import { Lite, Strong } from './models/Categories.model.js';
   import {Beer, Coctail, Energetic, Craft, Whiskey, Wine} from './models/Subcategories.model.js';
-  import mongoose from 'mongoose';
 
   const resolvers = {
     Query: {
@@ -34,7 +33,22 @@
         },
         getBeerById: async (_, { id }) => {
           return await  Beer.findById(id);
-        },   
+        },
+        getCoctailById: async (_, { id }) => {
+          return await  Coctail.findById(id);
+        },
+        getEnergeticById: async (_, { id }) => {
+          return await  Energetic.findById(id);
+        },
+        getCraftById: async (_, { id }) => {
+          return await  Craft.findById(id);
+        },
+        getWhiskeyById: async (_, { id }) => {
+          return await  Whiskey.findById(id);
+        },
+        getWineById: async (_, { id }) => {
+          return await  Wine.findById(id);
+        },                  
   }
 }
 
