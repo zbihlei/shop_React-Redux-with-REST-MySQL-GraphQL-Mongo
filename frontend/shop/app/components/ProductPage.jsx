@@ -62,7 +62,8 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
   //new item add to basket
 
   const newItem = {
-    id: prod.id,
+    // id: prod.id,
+    id: prod._id,
     type: prod.type,
     name: prod.name,
     image: prod.image,

@@ -1,20 +1,14 @@
-import {getGeneral} from './services/getData';
+// import {getGeneral} from './services/getData';
 import Main from '../app/components/Main';
-import {gql} from '@apollo/client';
+
+import {GET_GENERAL} from './queries/queries';
 
 export default async  function Home() {
-  const query = gql`
-  query {
-    getGeneral {
-      _id
-      name
-    }
-  }
-`;
 
-  const general = await getGeneral();
-  
+  // const general = await getGeneral();
+
   return (
-   <Main general={general} gqlQuery={query}/>
+  //  <Main general={general} />
+  <Main gqlQuery={GET_GENERAL}/>
   )
 }

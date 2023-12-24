@@ -1,17 +1,18 @@
- import  {gql} from 'apollo-server-express';
+import { gql } from 'apollo-server-express';
 
-const typeDefs = gql `
+const typeDefs = gql`
 
-    type General {
-        _id: ID,
-        name: String
-    }
-    type Categories {
-        _id: ID,
-        name: String,
-        image: String
-    }
-    type Subcategories {
+  type General {
+    _id: ID,
+    name: String
+  }
+  
+  type Categories {
+    _id: ID,
+    name: String,
+    image: String
+  }
+  type Subcategories {
         _id: ID,
         name: String,
         type: String,
@@ -21,23 +22,74 @@ const typeDefs = gql `
         volume: String,
         subtype: String
     }
-    type Query {
-        getGeneral: [General],
-        getLite: [Categories],
-        getStrong: [Categories],
-        getBeer: [Subcategories],
-        getEnergetic: [Subcategories],
-        getCoctail: [Subcategories],
-        getCraft: [Subcategories],
-        getWhiskey: [Subcategories],
-        getWine: [Subcategories],
-        getBeerById(id: ID): Subcategories,
-        getEnergeticById(id: ID): Subcategories,
-        getCraftById(id: ID): Subcategories,
-        getCoctailById(id: ID): Subcategories,
-        getWhiskeyById(id: ID): Subcategories,
-        getWineById(id: ID): Subcategories
-    }
- `;
+  
+  type BasketItem {
+    _id: ID
+    name: String
+    type: String
+    image: String
+    price: Float
+    volume: String
+    path: String
+    quantity: Int
+  }
+  
+  type Orders {
+    _id: ID,
+    firstname: String,
+    surname: String,
+    email: String,
+    phone: String,
+    date: String,
+    status: String,
+    basket: [BasketItem]
+  }
+  
+  type Query {
+    getGeneral: [General],
+    getLite: [Categories],
+    getStrong: [Categories],
+    getBeer: [Subcategories],
+    getEnergetic: [Subcategories],
+    getCoctail: [Subcategories],
+    getCraft: [Subcategories],
+    getWhiskey: [Subcategories],
+    getWine: [Subcategories],
+    getBeerById(id: ID): Subcategories,
+    getEnergeticById(id: ID): Subcategories,
+    getCraftById(id: ID): Subcategories,
+    getCoctailById(id: ID): Subcategories,
+    getWhiskeyById(id: ID): Subcategories,
+    getWineById(id: ID): Subcategories,
+    getAllOrders: [Orders]
+  }
+  
+  type Mutation {
+    createOrder(
+      input: OrderInput!
+    ): Orders
+  }
 
- export default typeDefs; 
+input OrderInput {
+    firstname: String!
+    surname: String!
+    email: String!
+    phone: String!
+    date: String!
+    status: String!
+    basket: [BasketItemInput]!
+  }
+
+  input BasketItemInput {
+    _id: ID!
+    name: String!
+    type: String!
+    image: String!
+    price: Float!
+    volume: String
+    path: String!
+    quantity: Int!
+  }
+`;
+
+export default typeDefs;

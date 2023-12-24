@@ -9,12 +9,19 @@ import { useAuth } from '../hooks/useAuth';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
-import { postData } from '../services/getData';
 import { clearBasket } from '../slices/basketSlice';
 
-import { BASE_URL } from '../utils/constants';
+// import { postData } from '../services/getData';
+// import { BASE_URL } from '../utils/constants';
+
+import {CREATE_ORDER} from '../mutations/mutations';
+import { useMutation } from '@apollo/client';
+import useCurrentDate from '../hooks/useCurrentDate';
 
 const ConfirmForm = () => {
+
+  const [createOrder] = useMutation(CREATE_ORDER);
+  const date = useCurrentDate();
 
   const [isClicked, setIsClicked] = useState(false);
   const basket = useSelector((state)=>state.basket.basket);
@@ -22,31 +29,78 @@ const ConfirmForm = () => {
   const router = useRouter();
   const {isAuth, email} = useAuth();
 
-  const handleSubmit = (client) => {
-    setIsClicked(true);
-      const data = {
-        client,
-        basket,
-      }
-      const jsonData = JSON.stringify(data);
+  // const handleSubmit = (client) => {
+  //   setIsClicked(true);
+  //     const data = {
+  //       client,
+  //       basket,
+  //     }
+  //     const jsonData = JSON.stringify(data);
         
-      postData(`${BASE_URL}/orders`, jsonData)
-        .then(res => {
-          console.log(res);
-        }).then(
-          dispatch(clearBasket())
-        ).then(
-          router.push('/buyed', { scroll: false })
-        )
-        .catch(error => {
-          console.log(error)
-        });
+  //     postData(`${BASE_URL}/orders`, jsonData)
+  //       .then(res => {
+  //         console.log(res);
+  //       }).then(
+  //         dispatch(clearBasket())
+  //       ).then(
+  //         router.push('/buyed', { scroll: false })
+  //       )
+  //       .catch(error => {
+  //         console.log(error)
+  //       });
 
 
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 500);
+  //   setTimeout(() => {
+  //     setIsClicked(false);
+  //   }, 500);
+  // };
+
+  const handleSubmit = async (values) => {
+    setIsClicked(true);
+  
+    const client = {
+      firstname: values.name,
+      surname: values.surname,
+      email: values.email,
+      phone: values.phone,
+      date: date.toString(),
+      status : "new"
+    };
+  
+    const basketItems = basket.map(item => ({
+      _id: item.id, 
+      name: item.name,
+      type: item.type,
+      image: item.image,
+      price: item.price,
+      volume: item.volume,
+      path: item.path,
+      quantity: item.quantity,
+    }));
+
+    try {
+      const { data } = await createOrder({
+        variables: {
+          input: {
+            ...client,
+            basket: basketItems,
+          },
+        },
+      });
+  
+      console.log('Order saved successfully:', data.createOrder);
+      dispatch(clearBasket());
+      router.push('/buyed', { scroll: false });
+  
+    } catch (error) {
+      console.error('Failed to save order:', error);
+    } finally {
+      setTimeout(() => {
+        setIsClicked(false);
+      }, 1000);
+    }
   };
+    
   
   const buttonStyles = {
     backgroundColor: isClicked ? 'rgb(242, 30, 168)' : 'black',

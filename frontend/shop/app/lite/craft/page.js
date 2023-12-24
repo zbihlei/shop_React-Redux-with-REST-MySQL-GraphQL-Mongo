@@ -1,28 +1,16 @@
 import ProductList from '../../components/ProductsList';
-import { getSpecific } from '../../services/getData';
-import {gql} from '@apollo/client';
+// import { getSpecific } from '../../services/getData';
+import {GET_CRAFT} from '../../queries/queries';
 
-export default async function Beer(){
-    const title = 'craft'
-    const query = gql`
-    query{
-      getCraft {
-        _id
-        name
-        type
-        image
-        description
-        price
-        volume
-        subtype
-        }
-    }
-  `;
+export default async function Craft(){
+  
+  const title = 'craft'
 
-    const specific = await getSpecific(title);
+    // const specific = await getSpecific(title);
 
   return (
-    <ProductList title={title} specific={specific} gqlQuery={query}/>
+    // <ProductList title={title} specific={specific} />
+    <ProductList title={title} gqlQuery={GET_CRAFT}/>
     )
 }
 

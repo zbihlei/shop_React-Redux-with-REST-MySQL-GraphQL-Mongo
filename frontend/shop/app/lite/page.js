@@ -1,22 +1,16 @@
-import {getSpecific} from '../services/getData';
+// import {getSpecific} from '../services/getData';
 import ProductsList from '../components/ProductsList';
-import {gql} from '@apollo/client';
+import { GET_LIGHT } from '../queries/queries';
 
 export default async function Lite() {
 
   const title = 'lite'
-  const query = gql`
-  query{
-    getLite {
-      _id
-      name
-      image
-    }
-  }
-`;
-  const specific = await getSpecific(title);
+
+  // const specific = await getSpecific(title);
 
   return (
-   <ProductsList title={title} specific={specific} gqlQuery={query}/>
+  //  <ProductsList title={title} specific={specific} />
+   <ProductsList title={title}  gqlQuery={GET_LIGHT}/>
+
    )
   }
