@@ -21,4 +21,13 @@ export const CREATE_ORDER = gql`
       }
     }
   }
+  `;
+  
+  export const UPDATE_ORDER_STATUS = gql`
+    mutation UpdateOrderStatus($orderId: ID!, $newStatus: String!) {
+    updateOrderStatus(orderId: $orderId, newStatus: $newStatus) {
+      _id
+      status
+    }
+  }
 `;

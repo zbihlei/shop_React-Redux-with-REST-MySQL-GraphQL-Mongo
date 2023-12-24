@@ -207,3 +207,27 @@ query GetById($id: ID!) {
   }
 }
 `;
+
+export const GET_ALL_ORDERS = gql`
+  query GetAllOrders {
+    getAllOrders {
+      _id
+      firstname
+      surname
+      email
+      phone
+      date
+      status
+      basket {
+        _id
+        name
+        type
+        image
+        price
+        volume
+        path
+        quantity
+      }
+    }
+  }
+`;

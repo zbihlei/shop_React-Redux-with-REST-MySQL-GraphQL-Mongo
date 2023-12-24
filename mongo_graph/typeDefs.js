@@ -44,7 +44,12 @@ const typeDefs = gql`
     status: String,
     basket: [BasketItem]
   }
-  
+
+  type UpdateOrderStatus {
+  _id: ID!
+  status: String!
+  }
+
   type Query {
     getGeneral: [General],
     getLite: [Categories],
@@ -69,6 +74,9 @@ const typeDefs = gql`
       input: OrderInput!
     ): Orders
   }
+  type Mutation {
+  updateOrderStatus(orderId: ID!, newStatus: String!): UpdateOrderStatus
+}
 
 input OrderInput {
     firstname: String!

@@ -54,19 +54,27 @@
     .adminWrapp{
         color: black;
         font-size: 18px;
-        margin: 10px 0 20px 50px;
+        margin: 10px 50px 20px 50px; //mr 50px for graph
         display: flex;
         align-items: center;
         flex-direction: row;
         span{
             margin-right: 20px;
         }
+                                //status this is for graph
+    .status{
+        margin-left: auto;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        }
     }
     .buttonsAdmin{
         display: flex;
         justify-content: flex-end;
         flex-direction: row;
-        margin: 10px 50px 0 0;
+        margin: 10px 50px 0 50px;   //50 px ml only for graph
         button{  
             cursor: pointer;
             width: 120px;
@@ -85,7 +93,17 @@
         button:last-child{
             margin-left: 20px;
         }
+    .total {                //this si only for graph
+        margin-right: auto;
+        align-self: center;
+       font-size: 24px;
+        span{
+            font-size: 18px;
+            color: $pink;
+             };
+        }
     }
+
     .item{
         padding: 20px;
         border: 1px solid rgb(195, 195, 195);
@@ -95,7 +113,8 @@
         display: grid;
         align-items: center;
         text-align: center;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         transition: 0.8s ease;
         &:hover{
             transition: 0.8s ease;

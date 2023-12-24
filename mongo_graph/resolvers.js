@@ -87,7 +87,29 @@
         throw new Error('Failed to create order');
       }
     },
-  },
+    updateOrderStatus: async (_, { orderId, newStatus }) => {
+      try {
+        const updatedOrder = await Orders.findByIdAndUpdate(
+          orderId,
+          { status: newStatus },
+          { new: true }
+        );
+
+        if (!updatedOrder) {
+          throw new Error('Order not found');
+        }
+
+        return {
+          _id: updatedOrder._id,
+          status: updatedOrder.status,
+        };
+      } catch (error) {
+        console.error('Failed to update order status:', error);
+        throw new Error('Failed to update order status');
+      }
+    }
+
+  }
   
 }
 
