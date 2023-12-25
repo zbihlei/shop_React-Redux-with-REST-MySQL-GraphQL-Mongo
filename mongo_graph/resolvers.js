@@ -3,6 +3,7 @@
   import {Beer, Coctail, Energetic, Craft, Whiskey, Wine} from './models/Subcategories.model.js';
   import { Orders } from './models/Orders.model.js';
 
+
   const resolvers = {
     Query: {
         getGeneral: async () => {
@@ -62,7 +63,24 @@
             throw new Error('Failed to get orders by email');
           }
         },
-        
+       
+    searchByName: async (_, { name }) => {
+      const beerResults = await Beer.find({ name: { $regex: name, $options: 'i' } });
+      const energeticResults = await Energetic.find({ name: { $regex: name, $options: 'i' } });
+      const coctailResults = await Coctail.find({ name: { $regex: name, $options: 'i' } });
+      const craftResults = await Craft.find({ name: { $regex: name, $options: 'i' } });
+      const whiskeyResults = await Whiskey.find({ name: { $regex: name, $options: 'i' } });
+      const wineResults = await Wine.find({ name: { $regex: name, $options: 'i' } });
+
+      return {
+        beer: beerResults,
+        energetic: energeticResults,
+        coctail: coctailResults,
+        craft: craftResults,
+        whiskey: whiskeyResults,
+        wine: wineResults,
+      };
+    },      
   },
   Mutation: {
     createOrder: async (_, args) => {

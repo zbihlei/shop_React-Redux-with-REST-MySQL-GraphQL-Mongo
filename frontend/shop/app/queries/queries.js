@@ -256,3 +256,51 @@ export const GET_ORDERS_BY_EMAIL = gql`
   }
 `;
 
+export const SEARCH_BY_NAME = gql`
+  query SearchByName($name: String!) {
+    searchByName(name: $name) {
+      beer {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+      energetic {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+      coctail {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+      craft {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+      whiskey {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+      wine {
+        _id
+        name
+        image
+        type
+        subtype
+      }
+    }
+  }
+`;

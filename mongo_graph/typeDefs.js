@@ -50,6 +50,15 @@ const typeDefs = gql`
   status: String!
   }
 
+  type SearchResult {
+    beer: [Subcategories],
+    energetic: [Subcategories],
+    coctail: [Subcategories],
+    craft: [Subcategories],
+    whiskey: [Subcategories],
+    wine: [Subcategories],
+}
+
   type Query {
     getGeneral: [General],
     getLite: [Categories],
@@ -67,7 +76,8 @@ const typeDefs = gql`
     getWhiskeyById(id: ID): Subcategories,
     getWineById(id: ID): Subcategories,
     getAllOrders: [Orders],
-    getOrdersByEmail(email: String) : [Orders]
+    getOrdersByEmail(email: String) : [Orders],
+    searchByName(name: String): SearchResult
   }
   
   type Mutation {
