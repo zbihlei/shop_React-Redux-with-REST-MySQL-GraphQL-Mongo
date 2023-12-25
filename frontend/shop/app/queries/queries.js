@@ -231,3 +231,28 @@ export const GET_ALL_ORDERS = gql`
     }
   }
 `;
+
+export const GET_ORDERS_BY_EMAIL = gql`
+  query GetOrdersByEmail($email: String!) {
+    getOrdersByEmail(email: $email) {
+      _id
+      firstname
+      surname
+      email
+      phone
+      date
+      status
+      basket {
+        _id
+        name
+        type
+        image
+        price
+        volume
+        path
+        quantity
+      }
+    }
+  }
+`;
+

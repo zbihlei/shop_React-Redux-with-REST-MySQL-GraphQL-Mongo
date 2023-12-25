@@ -154,10 +154,7 @@ const Admin = () => {
 
                 {item.basket.map((itm, index) => (
                   <Link key={index} href={`${LOCAL_HOST}${itm.path}`} style={{ textDecoration: 'none' }}>
-                    <div className={styles.item} style={{
-                      backgroundColor: itm.status === 'processed' ? 'rgb(242, 30, 168, 0.5)' : (itm.status === 'cancelled' ? 'rgb(140, 134, 138, 0.5)' : ''),
-                      color: itm.status === 'processed' || itm.status === 'cancelled' ? 'black' : ''
-                    }}>
+                    <div className={styles.item}>
                       <div className={styles.name}>{itm.name}</div>
                       <div className={styles.type}>{itm.type}</div>
                       <div className={styles.image}>

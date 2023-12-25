@@ -66,7 +66,8 @@ const typeDefs = gql`
     getCoctailById(id: ID): Subcategories,
     getWhiskeyById(id: ID): Subcategories,
     getWineById(id: ID): Subcategories,
-    getAllOrders: [Orders]
+    getAllOrders: [Orders],
+    getOrdersByEmail(email: String) : [Orders]
   }
   
   type Mutation {

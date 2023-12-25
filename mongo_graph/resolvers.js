@@ -52,7 +52,17 @@
         },
         getAllOrders: async () => {
           return await  Orders.find();
-        },                  
+        },
+        getOrdersByEmail: async (_, { email }) => {
+          try {
+            const orders = await Orders.find({ email: email });
+            return orders;
+          } catch (error) {
+            console.error('Failed to get orders by email:', error);
+            throw new Error('Failed to get orders by email');
+          }
+        },
+        
   },
   Mutation: {
     createOrder: async (_, args) => {
