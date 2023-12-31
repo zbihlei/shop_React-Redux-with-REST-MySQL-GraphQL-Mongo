@@ -76,6 +76,7 @@ const ProductList = ({specific, title, gqlQuery}) => {
       ))}
 
 </div>
+
   )
 }
 

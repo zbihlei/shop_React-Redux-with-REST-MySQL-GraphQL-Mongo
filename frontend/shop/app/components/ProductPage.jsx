@@ -229,6 +229,7 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
       </div>
     </div>
   )
+
 }
 
 export default ProductPage

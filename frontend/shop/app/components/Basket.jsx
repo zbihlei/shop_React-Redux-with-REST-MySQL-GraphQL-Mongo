@@ -8,7 +8,7 @@ import BasketItem from '../components/BasketItem';
 const Basket = () => {
 
   const basket= useSelector((state)=>state.basket.basket);
- 
+  
   return (
 
     <div className={styles.wrapp}>
@@ -25,6 +25,7 @@ const Basket = () => {
 </div>
 
   )
+
 } 
 
 export default Basket
