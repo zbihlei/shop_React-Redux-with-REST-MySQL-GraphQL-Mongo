@@ -1,5 +1,40 @@
 import { gql } from '@apollo/client';
 
+export const SUBCATEGORIES_FIELDS_FRAGMENT = gql`
+  fragment SubcategoriesFields on Subcategories {
+    _id
+    name
+    type
+    image
+    description
+    price
+    volume
+    subtype
+  }
+`;
+
+export const ORDER_FIELDS_FRAGMENT = gql`
+  fragment OrderFields on Orders {
+    _id
+    firstname
+    surname
+    email
+    phone
+    date
+    status
+    basket {
+      _id
+      name
+      type
+      image
+      price
+      volume
+      path
+      quantity
+    }
+  }
+`;
+
 export const GET_GENERAL = gql`
 query {
   getGeneral {
@@ -30,230 +65,131 @@ query{
 `;
 
 export const GET_WHISKEY = gql`
-query{
-  getWhiskey {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+  query {
+    getWhiskey {
+      ...SubcategoriesFields
     }
-}
+  }
+    ${SUBCATEGORIES_FIELDS_FRAGMENT}
 `;
+
 
 export const GET_WINE = gql`
 query{
   getWine {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields
     }
 }
+  ${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_WHISKEY_BY_ID = gql`
 query GetById($id: ID!) {
   getWhiskeyById(id: $id) {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields
   }
-}
+} 
+ ${SUBCATEGORIES_FIELDS_FRAGMENT}  
+
 `;
 
 export const GET_WINE_BY_ID = gql`
 query GetById($id: ID!) {
   getWineById(id: $id) {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields
   }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_BEER =  gql`
 query {
   getBeer{
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields
   }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const  GET_BEER_BY_ID = gql`
 query GetById($id: ID!) {
     getBeerById(id: $id) {
-      _id
-      name
-      type
-      image
-      description
-      price
-      volume
-      subtype
+      ...SubcategoriesFields  
+  }
 }
-}
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
+
 export const GET_COCTAIL = gql`
 query{
   getCoctail {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
     }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_COCTAIL_BY_ID = gql`
 query GetById($id: ID!) {
   getCoctailById(id: $id) {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
   }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_CRAFT =  gql`
 query{
   getCraft {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
     }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_CRAFT_BY_ID =  gql`
 query GetById($id: ID!) {
   getCraftById(id: $id) {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
   }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_ENERGETIC = gql`
 query{
   getEnergetic {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
     }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_ENERGETIC_BY_ID = gql`
 query GetById($id: ID!) {
   getEnergeticById(id: $id) {
-    _id
-    name
-    type
-    image
-    description
-    price
-    volume
-    subtype
+    ...SubcategoriesFields  
   }
 }
+${SUBCATEGORIES_FIELDS_FRAGMENT}  
 `;
 
 export const GET_ALL_ORDERS = gql`
   query GetAllOrders {
     getAllOrders {
-      _id
-      firstname
-      surname
-      email
-      phone
-      date
-      status
-      basket {
-        _id
-        name
-        type
-        image
-        price
-        volume
-        path
-        quantity
-      }
+      ...OrderFields
     }
   }
+  ${ORDER_FIELDS_FRAGMENT}
 `;
 
 export const GET_ORDERS_BY_EMAIL = gql`
   query GetOrdersByEmail($email: String!) {
     getOrdersByEmail(email: $email) {
-      _id
-      firstname
-      surname
-      email
-      phone
-      date
-      status
-      basket {
-        _id
-        name
-        type
-        image
-        price
-        volume
-        path
-        quantity
-      }
+      ...OrderFields
     }
   }
+  ${ORDER_FIELDS_FRAGMENT}
 `;
 
 export const SEARCH_BY_NAME = gql`

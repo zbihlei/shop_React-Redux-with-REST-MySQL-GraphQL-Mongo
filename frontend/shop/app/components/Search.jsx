@@ -38,6 +38,7 @@ const Search = () => {
   // }
 
   const debouncedSetFilter = useDebounce(
+
     (value) => {
       if (value.trim() === '') {
         setIsSearching(false);
@@ -45,17 +46,21 @@ const Search = () => {
         setFilter(value);
       }
     },
-    700,
+    1200,
     true 
   );
   
   const Search = (e) => {
     const value = e.target.value;
+
     debouncedSetFilter(value);
+    console.log('value', value)
     if (value.trim() !== '') {
       setIsSearching(true);
     }
   };
+
+
 
  // when we go Link basket state is saved 
   const memoizedBasket = useMemo(() => {
