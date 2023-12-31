@@ -1,3 +1,4 @@
+@import  'variables';
 .wrapp{
     background-image: url('../images//confirm.jpeg');
     background-position: 0 0;
@@ -7,3 +8,10 @@
     justify-content: space-around;
     align-items: center;
 }
+
+@media screen and (max-width: $breakpoint-medium){
+    .wrapp{ 
+        flex-direction: column;
+        padding: 50px 0;
+    }
+  }

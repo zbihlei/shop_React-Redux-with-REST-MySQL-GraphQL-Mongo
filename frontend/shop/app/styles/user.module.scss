@@ -144,3 +144,23 @@
 
     }
  
+
+    @media screen and (max-width: $breakpoint-medium){
+        .wrapp{
+            .time{
+                width: 100%;
+                margin: 0;
+                justify-content: center;
+            }
+            .adminWrapp{
+                flex-direction: column;
+                }
+            .status{
+                margin: 0 auto;
+                }
+            .item{
+                display: flex;
+                flex-direction: column;
+            }
+            }
+      }

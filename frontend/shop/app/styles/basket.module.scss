@@ -5,9 +5,11 @@
     background-size: contain;
     min-height: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding-bottom: 150px;
 }
 .empty{
     text-align: center;
@@ -17,8 +19,19 @@
         color: $pink;
     }
 }
-.confirm{
-    cursor: pointer;
+// .confirm{
+//     cursor: pointer;
+//     width: 120px;
+//     text-align: center;
+//     height: 40px;
+//     background-color: $pink;
+//     color: white;
+//     font-size: 24px;
+//     text-transform: uppercase;
+//     border: none;
+//     text-decoration: none;
+// }
+.confirm {
     width: 120px;
     text-align: center;
     height: 40px;
@@ -29,12 +42,26 @@
     border: none;
     text-decoration: none;
     position: absolute;
-    right: 50px;
-    bottom: 100px;
+    bottom: 50px;
+    left: auto;
 }
+
 .confirm:hover{
     transition: 0.8s ease;
     background-color: white;
     color: $pink;
 }
     
+@media screen and (max-width: $breakpoint-medium){
+    .wrapp{
+        background-size: cover;
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+    .confirm{
+        position: relative;
+        margin: 50px 0;
+        bottom: 20px;
+        right: auto;
+    }
+  }

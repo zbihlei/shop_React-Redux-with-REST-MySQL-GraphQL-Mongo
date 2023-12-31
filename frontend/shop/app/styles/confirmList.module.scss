@@ -13,3 +13,10 @@
     background-color: $pink;
     padding: 10px 20px;
 }
+
+    
+@media screen and (max-width: $breakpoint-medium){
+    .wrapp{ 
+        margin-bottom: 30px;
+    }
+  }

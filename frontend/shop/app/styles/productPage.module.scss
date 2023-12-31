@@ -143,3 +143,18 @@
       overflow-x: auto; 
     }
   }
+
+  @media screen and (max-width: $breakpoint-medium){
+    .wrapp{
+        padding: 50px;
+        flex-direction: column;
+        .right{
+            .name{
+                text-align: center;
+            }
+            .descriptionList{
+                text-align: center;
+            }
+        }
+    }
+  }

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-   
+    margin: 30px;
 }
 
 .item{
@@ -77,3 +77,8 @@
     border: 1px solid rgb(231, 231, 231);
 }
 
+@media screen and (max-width: $breakpoint-medium){
+    .wrapp{
+      margin-top: 50px;
+    }
+  }

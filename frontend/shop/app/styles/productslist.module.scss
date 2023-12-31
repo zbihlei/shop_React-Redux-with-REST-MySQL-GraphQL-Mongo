@@ -82,3 +82,11 @@
       overflow-x: auto; 
     }
   } 
+
+  @media screen and (max-width: $breakpoint-medium){
+    .wrapp{
+        padding: 50px 0;
+        flex-direction: column;
+        gap: 50px;
+    }
+  }

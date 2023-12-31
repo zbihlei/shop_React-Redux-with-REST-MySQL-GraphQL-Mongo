@@ -46,20 +46,17 @@ const Search = () => {
         setFilter(value);
       }
     },
-    1200,
+    1000,
     true 
   );
   
   const Search = (e) => {
     const value = e.target.value;
-
     debouncedSetFilter(value);
-    console.log('value', value)
     if (value.trim() !== '') {
       setIsSearching(true);
     }
   };
-
 
 
  // when we go Link basket state is saved 
