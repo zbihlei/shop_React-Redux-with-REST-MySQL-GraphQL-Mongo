@@ -22,7 +22,7 @@ export default function Main({general, gqlQuery}) {
 
 
   useEffect(() => {
-    const isModalShown = localStorage.getItem('isModalShown');
+    const isModalShown = sessionStorage.getItem('isModalShown');
     if (isModalShown) {
       setModalVisible(false);
     } else {
@@ -32,7 +32,7 @@ export default function Main({general, gqlQuery}) {
 
   function hideModal(){
     setModalVisible(false);
-    localStorage.setItem('isModalShown', 'true');
+    sessionStorage.setItem('isModalShown', 'true');
   }
 
   return (
