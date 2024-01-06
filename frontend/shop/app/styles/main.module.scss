@@ -119,6 +119,9 @@
       filter: grayscale(100%);
       opacity: 0;
     }
+    .burger{
+      margin-right: 10px;
+    }
   }
 
   @media screen and (max-width: $breakpoint-medium){
