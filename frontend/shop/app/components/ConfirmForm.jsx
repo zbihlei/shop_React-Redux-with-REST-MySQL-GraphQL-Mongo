@@ -23,6 +23,7 @@ const ConfirmForm = () => {
   const [createOrder] = useMutation(CREATE_ORDER);
   const date = useCurrentDate();
 
+
   const [isClicked, setIsClicked] = useState(false);
   const basket = useSelector((state)=>state.basket.basket);
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const ConfirmForm = () => {
 
   const handleSubmit = async (values) => {
     setIsClicked(true);
+  
   
     const client = {
       firstname: values.name,

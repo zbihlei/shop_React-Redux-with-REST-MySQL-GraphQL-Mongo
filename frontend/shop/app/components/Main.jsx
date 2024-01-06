@@ -4,6 +4,7 @@ import styles from '../styles/main.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
+import Spiner from '../components/Spinner';
 
 import { useQuery } from '@apollo/client';
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === 'development') { //dev mode only
 export default function Main({general, gqlQuery}) {
 
   const [modalVisible, setModalVisible] = useState(true);
-  const { data } =  useQuery(gqlQuery);
+  const { data, loading } =  useQuery(gqlQuery);
   const firstKey = data ? Object.keys(data)[0] : null;
   const list = firstKey ? data[firstKey] : [];
 
@@ -40,6 +41,10 @@ export default function Main({general, gqlQuery}) {
      
       {modalVisible && <Modal hide={hideModal} />}
 
+{loading ? 
+  <Spiner/>
+  : 
+  <>
       {/* {general.map(gen => (  using with sql*/}
       {list.map((gen, index) => (
         <Link 
@@ -55,6 +60,8 @@ export default function Main({general, gqlQuery}) {
           <span>{gen.name}</span>
         </Link>
       ))}
+  </>
+}
 
   </div>
   );

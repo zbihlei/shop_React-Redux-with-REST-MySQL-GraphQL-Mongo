@@ -5,10 +5,11 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
 import { addToBasket } from '../slices/basketSlice';
 import { usePathname } from 'next/navigation';
-// import MyLoader from './Loader';
+import Spiner from '../components/Spinner';
 
 import { useQuery } from '@apollo/client';
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { SP } from 'next/dist/shared/lib/utils';
 
 if (process.env.NODE_ENV === 'development') { //dev mode only
   loadDevMessages();
@@ -20,7 +21,7 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
   const pathname = usePathname(); //also need with sql
 
   const id = pathname.split('/').pop();
-  const { data } = useQuery(gqlQuery, {
+  const { data, loading } = useQuery(gqlQuery, {
     variables: { id: id },
   });
   const firstKey = data ? Object.keys(data)[0] : null;
@@ -41,7 +42,6 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
 // }
 
   // const [description, setDescription] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [volume, setVolume] = useState([]); // firstVol initial state with sql
   const [quantity, setQuantity] = useState(1);
   const [chosenVol, setChosenVol] = useState();
@@ -158,7 +158,11 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
     ${wine ? styles.wine : ''}
     ${whiskey ? styles.whiskey : ''}`}>
 
-      <div className={styles.left}>
+    {loading?
+    <Spiner/>
+    :
+    <>
+          <div className={styles.left}>
         <div className={styles.image}>
         <img src={prod.image} alt="image" />        
         </div>
@@ -227,6 +231,8 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
             </div>
         </div>
       </div>
+
+    </>}
     </div>
   )
 

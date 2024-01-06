@@ -6,6 +6,7 @@ import { LOCAL_HOST } from '../utils/constants';
 
 import { useQuery } from '@apollo/client';
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import Spiner from '../components/Spinner';
 
 if (process.env.NODE_ENV === 'development') { //dev mode only
   loadDevMessages();
@@ -14,7 +15,7 @@ if (process.env.NODE_ENV === 'development') { //dev mode only
 
 const ProductList = ({specific, title, gqlQuery}) => {
 
-  const { data } =  useQuery(gqlQuery);
+  const { data, loading } =  useQuery(gqlQuery);
   const firstKey = data ? Object.keys(data)[0] : null;
   const list = firstKey ? data[firstKey] : [];
 
@@ -38,8 +39,12 @@ const ProductList = ({specific, title, gqlQuery}) => {
     ${wine ? styles.wine : ''}
     ${whiskey ? styles.whiskey : ''}`}>
 
-    {/* {specific.map(item => ( */ /*using with sql*/} 
-    {list.map((item, index) => (
+    {loading ? 
+    <Spiner/>
+    :
+    <>
+        {/* {specific.map(item => ( */ /*using with sql*/} 
+        {list.map((item, index) => (
     <>
     {item.type ?  
     
@@ -74,7 +79,7 @@ const ProductList = ({specific, title, gqlQuery}) => {
  }
     </>
       ))}
-
+    </>}
 </div>
 
   )
