@@ -87,7 +87,7 @@ const ProductPage = ({title, specificProduct, gqlQuery}) => {
   const handleClick = () => {
     setIsClicked(true);
     dispatch(addToBasket(newItem));
-
+  
     setTimeout(() => {
       setIsClicked(false);
     }, 500);

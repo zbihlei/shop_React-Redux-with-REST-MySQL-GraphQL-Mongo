@@ -10,6 +10,7 @@
 
 .beer{
     background-image: url('../images//beer.jpeg');
+    background-size: cover;
 }
 .energetic{
     background-image: url('../images//energetic.jpeg');
@@ -156,5 +157,37 @@
                 text-align: center;
             }
         }
+    }
+  }
+  @media (max-width: $breakpoint-small) {
+    .wrapp {
+        .right{
+            .name{
+                padding: 0 200px;
+            }
+        }
+        .descriptionList{
+            padding: 0 150px;
+        }
+    
+      .low{
+        flex-direction: column;
+        .price{
+            position: relative;
+            margin-bottom: 30px;
+            span{
+                position: absolute;
+                top: 12px;
+                right: -15px;
+            }
+        }
+        .quantity{
+            margin: 0 auto;
+            padding-bottom: 30px;
+        }
+        .volume{
+            margin-bottom: 30px;
+        }
+      }
     }
   }
